@@ -4,12 +4,15 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 public class Opcionesavanzadas extends JPanel {
 	private JTextField textField;
 	private JRadioButton rdbtnMediaPensin, rdbtnPensinCompleta, rdbtnSpa, rdbtnIndividual, rdbtnDoble, rdbtnGym, rdbtnGaraje;
 	private JButton btnCancelar, btnSiguiente;
+	private ButtonGroup grupo, grupo2;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -85,6 +88,14 @@ public class Opcionesavanzadas extends JPanel {
 		btnSiguiente.setBounds(277, 257, 89, 23);
 		add(btnSiguiente);
 
+		grupo = new ButtonGroup();
+		grupo.add(rdbtnIndividual);
+		grupo.add(rdbtnDoble);
+
+		grupo2 = new ButtonGroup();
+		grupo.add(rdbtnMediaPensin);
+		grupo.add(rdbtnPensinCompleta);
+		
 		
 	}
 	public JTextField getTextField() {

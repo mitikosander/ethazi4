@@ -29,12 +29,14 @@ public class Inicio extends JPanel {
 	private JCalendar calendar_salida;
 	private JComboBox combo_ubicacion;
 	private JButton btnseleccionar;
+	private ButtonGroup grupo;
 
 	/**
 	 * Create the panel.
 	 */
 	public Inicio() {
 		setLayout(null);
+		
 		
 		
 		btn_buscar_inicio = new JButton("Buscar");
@@ -84,6 +86,10 @@ public class Inicio extends JPanel {
 		btnseleccionar.setBounds(391, 141, 115, 29);
 		add(btnseleccionar);
 
+		grupo = new ButtonGroup();
+		grupo.add(rdbtnApartamento);
+		grupo.add(rdbtnHotel);
+		grupo.add(rdbtnCasaRural);
 	}
 
 
