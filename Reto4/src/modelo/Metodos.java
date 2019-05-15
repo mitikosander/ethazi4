@@ -445,7 +445,7 @@ public class Metodos {
 	}
 	
 
-	public static void guardar(String Nombre, String Apellido, String DNI, Date Fecha_Nac) {
+	public static void guardar(String Nombre, String Apellido, String DNI, Date Fecha_nac) {
 		BBDD conectar = new BBDD();
 		try {
 			String insertTableSQL = "INSERT INTO cliente VALUES (?,?,?,?)";
@@ -453,7 +453,7 @@ public class Metodos {
 			stmt.setString(1, Nombre);
 			stmt.setString(2, Apellido);
 			stmt.setString(3, DNI);
-			stmt.setDate(4, Fecha_Nac);
+			stmt.setDate(4, Fecha_nac);
 			stmt.executeUpdate();
 	
 		} catch (Exception e) {
