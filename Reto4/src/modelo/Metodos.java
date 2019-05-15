@@ -32,7 +32,7 @@ public class Metodos {
 
 	public ArrayList<String> cargarciudades() {
 		ciudades = new ArrayList<String>();
-		String sql = "SELECT ubicacion FROM hoteles";
+		String sql = "SELECT DISTINCT ubicacion FROM hoteles";
 		BBDD conectar = new BBDD();
 		try {
 			PreparedStatement ps = conectar.conectarBase().prepareStatement(sql);
@@ -53,7 +53,7 @@ public class Metodos {
 
 	public ArrayList<String> cargarciudadesCasas() {
 		casas = new ArrayList<String>();
-		String sql = "SELECT ubicacion FROM casarural";
+		String sql = "SELECT DISTINCT ubicacion FROM casarural";
 		BBDD conectar = new BBDD();
 		try {
 			PreparedStatement ps = conectar.conectarBase().prepareStatement(sql);
@@ -74,7 +74,7 @@ public class Metodos {
 
 	public ArrayList<String> cargarciudadesapartamentos() {
 		apartamentos = new ArrayList<String>();
-		String sql = "SELECT ubicacion FROM apartamentos";
+		String sql = "SELECT DISTINCT ubicacion FROM apartamentos";
 		BBDD conectar = new BBDD();
 		try {
 			PreparedStatement ps = conectar.conectarBase().prepareStatement(sql);
@@ -154,7 +154,7 @@ public class Metodos {
 	}
 
 	public ArrayList<String> cargarcasas(String nombreubicacion) {
-		Vista vista = new Vista();
+	
 
 		BBDD conectar = new BBDD();
 		casas = new ArrayList<String>();
@@ -177,7 +177,7 @@ public class Metodos {
 	}
 
 	public ArrayList<String> cargarHoteles(String nombreubicacion) {
-		Vista vista = new Vista();
+		
 
 		BBDD conectar = new BBDD();
 		hoteles = new ArrayList<String>();
@@ -237,7 +237,7 @@ public class Metodos {
 
 	public DefaultTableModel cargarTablahoteles(String ubicacion) {
 
-		Vista vista = new Vista();
+		
 
 		String sql = "SELECT nombre,precio,tipo_cama,n_camas,n_habitaciones FROM hoteles WHERE ubicacion LIKE '"
 				+ ubicacion + "'";
@@ -281,7 +281,7 @@ public class Metodos {
 
 	public DefaultTableModel cargarTablaapartamentos(String ubicacion) {
 
-		Vista vista = new Vista();
+		
 
 		String sql = "SELECT nombre,precio,numerobanos,mcuadrados FROM apartamentos WHERE ubicacion LIKE '" + ubicacion
 				+ "'";
@@ -324,7 +324,7 @@ public class Metodos {
 
 	public DefaultTableModel cargarTablacasasrurales(String ubicacion) {
 
-		Vista vista = new Vista();
+		
 
 		String sql = "SELECT nombre,precio,numerohabita,mcuadrados FROM apartamentos WHERE casarural LIKE '" + ubicacion
 				+ "'";

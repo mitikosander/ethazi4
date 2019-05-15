@@ -62,8 +62,8 @@ public class Controlador {
 		
 		vista.getInicio().getBtn_buscar_inicio().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
-				String mes = Integer.toString(vista.getInicio().getCalendar_entrada().getCalendar().get(Calendar.MONTH) + 1);
+				
+				int mes = vista.getInicio().getCalendar_entrada().getCalendar().get(Calendar.MONTH) + 1;
 				if(mes>4 && mes<=8) {
 					vista.getInicio2().getTextField().setText("Temporada Alta");
 				}else {
@@ -72,7 +72,7 @@ public class Controlador {
 				}
 				
 					vista.mostrarPantalla(vista.getInicio2());
-				*/
+				
 							}
 		});
 		vista.getInicio2().getBtnSiguiente().addActionListener(new ActionListener() {
