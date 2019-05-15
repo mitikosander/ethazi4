@@ -5,16 +5,20 @@ import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import Peliculas.Peliculas;
 import vista.Vista;
 
 public class Metodos {
@@ -439,5 +443,26 @@ public class Metodos {
 		}
 
 	}
+	
+
+//	public static void guardar(String Nombre, String Apellido, String DNI, Date Fecha_Nac) {
+//		try {
+//			String insertTableSQL = "INSERT INTO cliente VALUES (?,?,?,?)";
+//			String index = null;
+//			PreparedStatement stmt = conexion.prepareStatement(insertTableSQL);
+//			stmt.setString(1, index);
+//			stmt.setString(2, nuevapelicula.getTitulo());
+//			stmt.setDate(3, nuevapelicula.getFecha_Estreno());
+//			stmt.setInt(4, nuevapelicula.getDuracion());
+//			stmt.executeUpdate();
+//			System.out.println("Pelicula" + nuevapelicula.getTitulo() + "Fecha de estreno"
+//					+ nuevapelicula.getFecha_Estreno() + "Duracion" + nuevapelicula.getDuracion());
+//		} catch (Exception e) {
+//			System.out.println("Error, insertar pelicula" + e);
+//		}
+//
+//	}
+	    
+	    
 
 }
