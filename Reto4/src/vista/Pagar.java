@@ -30,6 +30,7 @@ public class Pagar extends JPanel {
 	private JButton btn5cnt;
 	private JButton btn2cnt;
 	private JButton btn1cnt;
+	private JTextField textField_3;
 	
 	/**
 	 * Create the panel.
@@ -69,7 +70,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn50euro.setBounds(33, 128, 60, 25);
+		btn50euro.setBounds(33, 174, 60, 25);
 		add(btn50euro);
 		
 		btn20euro = new JButton("20\u20AC");
@@ -77,7 +78,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btn20euro.setBounds(103, 128, 60, 25);
+		btn20euro.setBounds(103, 174, 60, 25);
 		add(btn20euro);
 		
 		btn10euro = new JButton("10 \u20AC");
@@ -85,7 +86,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn10euro.setBounds(170, 128, 60, 25);
+		btn10euro.setBounds(170, 174, 60, 25);
 		add(btn10euro);
 		
 		btn5euro = new JButton("5\u20AC");
@@ -93,7 +94,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn5euro.setBounds(240, 128, 60, 25);
+		btn5euro.setBounds(240, 174, 60, 25);
 		add(btn5euro);
 		
 		btn2euro = new JButton("2\u20AC");
@@ -101,7 +102,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn2euro.setBounds(310, 128, 60, 25);
+		btn2euro.setBounds(310, 174, 60, 25);
 		add(btn2euro);
 		
 		btn1euro = new JButton("1\u20AC");
@@ -109,15 +110,15 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn1euro.setBounds(380, 128, 60, 25);
+		btn1euro.setBounds(380, 174, 60, 25);
 		add(btn1euro);
 		
 		btnDevolver = new JButton("Devolver");
-		btnDevolver.setBounds(315, 218, 97, 25);
+		btnDevolver.setBounds(315, 264, 97, 25);
 		add(btnDevolver);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(52, 218, 97, 25);
+		btnCancelar.setBounds(52, 264, 97, 25);
 		add(btnCancelar);
 		
 		btn50cnt = new JButton("50cnt");
@@ -125,7 +126,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btn50cnt.setBounds(33, 164, 60, 25);
+		btn50cnt.setBounds(33, 210, 60, 25);
 		add(btn50cnt);
 		
 		btn20cnt = new JButton("20cnt");
@@ -133,7 +134,7 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn20cnt.setBounds(103, 164, 60, 25);
+		btn20cnt.setBounds(103, 210, 60, 25);
 		add(btn20cnt);
 		
 		btn10cnt = new JButton("10cnt");
@@ -141,20 +142,29 @@ setLayout(null);
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn10cnt.setBounds(170, 164, 60, 25);
+		btn10cnt.setBounds(170, 210, 60, 25);
 		add(btn10cnt);
 		
 		btn5cnt = new JButton("5cnt");
-		btn5cnt.setBounds(240, 164, 60, 25);
+		btn5cnt.setBounds(240, 210, 60, 25);
 		add(btn5cnt);
 		
 		btn2cnt = new JButton("2cnt");
-		btn2cnt.setBounds(310, 164, 60, 25);
+		btn2cnt.setBounds(310, 210, 60, 25);
 		add(btn2cnt);
 		
 		btn1cnt = new JButton("1cnt");
-		btn1cnt.setBounds(380, 164, 60, 25);
+		btn1cnt.setBounds(380, 210, 60, 25);
 		add(btn1cnt);
+		
+		JLabel lblCodigoPromocional = new JLabel("Codigo Promocional: ");
+		lblCodigoPromocional.setBounds(103, 137, 108, 14);
+		add(lblCodigoPromocional);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(240, 131, 116, 20);
+		add(textField_3);
+		textField_3.setColumns(10);
 	}
 	public JTextField gettextField() {
 		return (this.textField);
@@ -312,5 +322,4 @@ setLayout(null);
 	public void setbtn1cnt() {
 	this.btn1cnt.setText("1 cnt");
 	}
-	
 }
