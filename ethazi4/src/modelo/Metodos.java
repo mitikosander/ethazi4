@@ -507,6 +507,24 @@ public class Metodos {
 		}
 	}
 	
-	
+	//Metodo para insertar la reserva en la BBDD
+	public void insertarReserva() {
+		String sql="INSERT INTO pedidos (`Fecha_res`, `Nombreusu`, `Precio`, `ID_Alojamiento`) VALUES (?,?,?,?)";
+		Modelo modelo=new Modelo();
+		
+		try {
+			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			
+			ps.setDate(1, null);
+			ps.setString(2, "");
+			ps.setDouble(3, 0.4);
+			ps.setString(4, "");
+			
+			ps.execute();
+			
+		}catch(SQLException e) {
+			System.err.println("Insert no valido, motivo:"+e);
+		}
+	}
 
 }
