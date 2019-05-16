@@ -453,11 +453,11 @@ public class Metodos {
 		
 		
 		//generamos un numero que decidira si insertamos una letra o un numero
-		int gen=(int) Math.floor(Math.random()*2+1);
+		int gen;
 		
 		
 		while(cont<posiciones.length) {
-			
+			gen=(int) Math.floor(Math.random()*2+1);
 			switch(gen){
 			case 1:
 				codigo=Character.toString(generarLetra());
