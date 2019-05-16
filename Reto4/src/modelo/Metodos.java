@@ -97,35 +97,35 @@ public class Metodos {
 
 	}
 	/*
-	 * public ArrayList<String> cargarCiudades() {
-	 * 
-	 * Vista vista = new Vista(); Modelo modelo = new Modelo(); ArrayList<String>
-	 * ciudades = new ArrayList<String>(); String sql = " ";
-	 * 
-	 * // Comprobamos el alojamiento seleccionado para cargar las ciudades if
-	 * (vista.getInicio().getRdbtnHotel().isSelected() == true) { sql =
-	 * "SELECT DISTINCT ubicacion FROM hoteles"; } else if
-	 * (vista.getInicio().getRdbtnApartamento().isSelected() == true) { sql =
-	 * "SELECT DISTINCT ubicacion FROM apartamentos"; } else if
-	 * (vista.getInicio().getRdbtnCasaRural().isSelected() == true) { sql =
-	 * "SELECT DISTINCT ubicacion FROM casarural"; } else {
-	 * System.err.println("No se ha seleccionado el tipo de alojamiento"); }
-	 * 
-	 * try { modelo.getBasededatos().conectarBase();
-	 * 
-	 * PreparedStatement ps =
-	 * modelo.getBasededatos().conectarBase().prepareStatement(sql);
-	 * 
-	 * ResultSet rs = ps.executeQuery();
-	 * 
-	 * while (rs.next()) { ciudades.add(rs.getString(1)); }
-	 * 
-	 * } catch (SQLException e) {
-	 * System.err.println("Fallo en la conexion, motivo del error: \n" + e); }
-	 * 
-	 * return ciudades;
-	 * 
-	 * }
+	  public ArrayList<String> cargarCiudades() {
+	  
+	  Vista vista = new Vista(); Modelo modelo = new Modelo(); ArrayList<String>
+	 ciudades = new ArrayList<String>(); String sql = " ";
+	  
+	  // Comprobamos el alojamiento seleccionado para cargar las ciudades if
+	  (vista.getInicio().getRdbtnHotel().isSelected() == true) { sql =
+	  "SELECT DISTINCT ubicacion FROM hoteles"; } else if
+	  (vista.getInicio().getRdbtnApartamento().isSelected() == true) { sql =
+	  "SELECT DISTINCT ubicacion FROM apartamentos"; } else if
+	  (vista.getInicio().getRdbtnCasaRural().isSelected() == true) { sql =
+	  "SELECT DISTINCT ubicacion FROM casarural"; } else {
+	  System.err.println("No se ha seleccionado el tipo de alojamiento"); }
+	  
+	  try { modelo.getBasededatos().conectarBase();
+	  
+	  PreparedStatement ps =
+	  modelo.getBasededatos().conectarBase().prepareStatement(sql);
+	  
+	  ResultSet rs = ps.executeQuery();
+	  
+	  while (rs.next()) { ciudades.add(rs.getString(1)); }
+	  
+	  } catch (SQLException e) {
+	  System.err.println("Fallo en la conexion, motivo del error: \n" + e); }
+	 
+	 return ciudades;
+	 
+	  }
 	 */
 
 	public ArrayList<String> cargarApartamentos(String nombreubicacion) {
@@ -247,8 +247,8 @@ public class Metodos {
 		modelo.addColumn("Nombre: ");
 		modelo.addColumn("Precio: ");
 		modelo.addColumn("Tipo Cama: ");
-		modelo.addColumn("Nº Camas: ");
-		modelo.addColumn("Nº Habitaciones: ");
+		modelo.addColumn("NÂº Camas: ");
+		modelo.addColumn("NÂº Habitaciones: ");
 
 		try {
 
