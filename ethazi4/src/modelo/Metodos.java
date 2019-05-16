@@ -492,5 +492,21 @@ public class Metodos {
 		char letra= (char) Math.floor(Math.random()*(90-65+1)+65);
 		return letra;
 	}
+	
+	
+	//metodo que borra el codigo promocional de la base de datos al ser usado 
+	public void borrarPromo(String usuario) {
+		Modelo modelo=new Modelo();
+		String sql="UPDATE usuarios SET codigopromo=null WHERE Nombreusu LIKE '"+usuario+"'";
+		
+		try {
+			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ps.executeUpdate();
+		}catch(SQLException e) {
+			System.err.println("Actualizacion erronea, motivo: "+e);
+		}
+	}
+	
+	
 
 }
