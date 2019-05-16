@@ -2,18 +2,12 @@ package modelo;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -22,21 +16,17 @@ import vista.Vista;
 
 public class Metodos {
 
-	private static ArrayList<String> ciudades;
-	private static ArrayList<String> hoteles;
+	
 	private static ArrayList<String> apartamentos;
 	private static ArrayList<String> casas;
-	private static ArrayList<String> precios;
-	private ArrayList<modelo.Alojamiento> busquedas;
 	static String fecha;
 	static String fecha2;
-	private static Connection conexion;
 	// metodo para guardar el nombre de las ciudades en un arraylist con el que
 	// cargaremos el combobox
 
 	public ArrayList<String> cargarciudades() {
-		ciudades = new ArrayList<String>();
-		String sql = "SELECT ubicacion FROM hoteles";
+		ArrayList<String >ciudades = new ArrayList<String>();
+		String sql = "SELECT DISTINCT ubicacion FROM hoteles";
 		BBDD conectar = new BBDD();
 		try {
 			PreparedStatement ps = conectar.conectarBase().prepareStatement(sql);
@@ -57,7 +47,7 @@ public class Metodos {
 
 	public ArrayList<String> cargarciudadesCasas() {
 		casas = new ArrayList<String>();
-		String sql = "SELECT ubicacion FROM casarural";
+		String sql = "SELECT DISTINCT ubicacion FROM casarural";
 		BBDD conectar = new BBDD();
 		try {
 			PreparedStatement ps = conectar.conectarBase().prepareStatement(sql);
@@ -78,7 +68,7 @@ public class Metodos {
 
 	public ArrayList<String> cargarciudadesapartamentos() {
 		apartamentos = new ArrayList<String>();
-		String sql = "SELECT ubicacion FROM apartamentos";
+		String sql = "SELECT DISTINCT ubicacion FROM apartamentos";
 		BBDD conectar = new BBDD();
 		try {
 			PreparedStatement ps = conectar.conectarBase().prepareStatement(sql);
@@ -96,15 +86,18 @@ public class Metodos {
 		}
 
 	}
+	
+
+	
 
 	public DefaultTableModel cargarTablahoteles(String ubicacion) {
 
-		Vista vista = new Vista();
+		
 
 		String sql = "SELECT nombre,precio,tipo_cama,n_camas,n_habitaciones FROM hoteles WHERE ubicacion LIKE '"
 				+ ubicacion + "'";
 		BBDD conectar = new BBDD();
-		busquedas = null;
+	
 
 		DefaultTableModel modelo = new DefaultTableModel();
 
@@ -143,12 +136,12 @@ public class Metodos {
 
 	public DefaultTableModel cargarTablaapartamentos(String ubicacion) {
 
-		Vista vista = new Vista();
+		
 
 		String sql = "SELECT nombre,precio,numerobanos,mcuadrados FROM apartamentos WHERE ubicacion LIKE '" + ubicacion
 				+ "'";
 		BBDD conectar = new BBDD();
-		busquedas = null;
+	
 
 		DefaultTableModel modelo = new DefaultTableModel();
 
@@ -186,12 +179,12 @@ public class Metodos {
 
 	public DefaultTableModel cargarTablacasasrurales(String ubicacion) {
 
-		Vista vista = new Vista();
+		
 
 		String sql = "SELECT nombre,precio,numerohabita,mcuadrados FROM apartamentos WHERE casarural LIKE '" + ubicacion
 				+ "'";
 		BBDD conectar = new BBDD();
-		busquedas = null;
+		
 
 		DefaultTableModel modelo = new DefaultTableModel();
 
@@ -300,38 +293,6 @@ public class Metodos {
 			}
 		}
 
-	}
-
-	public static void guardar(String Nombre, String Apellido, String DNI, Date Fecha_nac) {
-		BBDD conectar = new BBDD();
-		try {
-			String insertTableSQL = "INSERT INTO cliente VALUES (?,?,?,?)";
-			PreparedStatement stmt = conectar.conectarBase().prepareStatement(insertTableSQL);
-			stmt.setString(1, Nombre);
-			stmt.setString(2, Apellido);
-			stmt.setString(3, DNI);
-			stmt.setDate(4, Fecha_nac);
-			stmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("Error");
-		}
-
-	}
-
-	//Aqui he creado la variable preciotot pero no creo que haga falta, aun asi, por si acaso la he creado
-	//En caso de no necesitarla se borra en un segundo
-	public static double codigos(String codigo, double precio, double preciotot) {
-		if (codigo.equals("promo1")) {
-			preciotot = precio - 50;
-			return preciotot;
-		} else if (codigo.equals("promo2")) {
-			preciotot = precio - 25;
-			return preciotot;
-		} else {
-			preciotot = precio;
-			return preciotot;
-		}
 	}
 
 }
