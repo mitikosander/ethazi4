@@ -455,16 +455,18 @@ public class Metodos {
 
 	}
 
-	public static double codigos(String codigo, double precio) {
+	//Aqui he creado la variable preciotot pero no creo que haga falta, aun asi, por si acaso la he creado
+	//En caso de no necesitarla se borra en un segundo
+	public static double codigos(String codigo, double precio, double preciotot) {
 		if (codigo.equals("promo1")) {
-			precio = precio - 50;
-			return precio;
+			preciotot = precio - 50;
+			return preciotot;
 		} else if (codigo.equals("promo2")) {
-			precio = precio - 25;
-			return precio;
+			preciotot = precio - 25;
+			return preciotot;
 		} else {
-			precio = precio + 0;
-			return precio;
+			preciotot = precio;
+			return preciotot;
 		}
 	}
 
