@@ -35,6 +35,9 @@ public class Controlador {
 
 		// Cargamos la pantalla principal
 		vista.mostrarPantalla(vista.getInicio());
+		
+		//llamamos al metodo que asigna codigos promocionales
+		modelo.getMetodos().asignarCodigoPromo();
 
 		// Cargamos el comboBox con las ciudades
 

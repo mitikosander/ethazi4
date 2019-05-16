@@ -337,5 +337,160 @@ public class Metodos {
 		}
 
 	}
+	
+	
+	
+	//metodo que decide si en esta ejecucion del programa genera o no un codigo promocional 
+	public void asignarCodigoPromo() {
+		//primero hacemos un numero entre 1 y 2 para decidir si asignar o no el codigo de esta forma no siempre se dará un codigo
+		
+		int gen=(int) Math.floor(Math.random()*2+1);
+		
+		switch(gen) {
+		case 1:
+			break;
+		case 2:
+			asignacodigo();
+			System.out.println("codigo Asignado");
+			break;
+		}
+	}
+	
+	
+	//metodo que asigna un codigo promocional a un usuario aleatorio
+	private void asignacodigo() {
+		//generamos un numero entre 1 y el numero de usuarios que haya en la base
+		int n_users=contarUsuarios();
+		
+		int gen=-1;
+		
+		if(n_users !=0) {
+		 gen=(int) Math.floor(Math.random()*n_users+1);
+		
+		
+		//ahora seleccionamos de la base el nombre con el numero asignado
+		ArrayList<String> nombres=cargarNombresUsuario();
+		
+		String asignar=nombres.get(gen);
+		
+		//ahora insertamos el codigo promocional al usuario en la base de datos
+			insertarCodigoPromo(asignar);
+		
+		}
+	}
+	
+	
+	//metodo que inserta el codigo promocional al usuario que se le pase por parametro
+	
+	private void insertarCodigoPromo(String usuario) {
+		String codigoPromo=generarCodigo();
+		String sql="UPDATE usuarios SET codigopromo= ? WHERE Nombreusu LIKE '"+usuario+"'";
+		Modelo modelo=new Modelo();
+		try {
+			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ps.setString(1, codigoPromo);
+			ps.executeUpdate();
+		}catch(SQLException e) {
+			System.err.println("Actualizacion erronea: " +e);
+		}
+	}
+	
+	//metodo que carga el nombre de todos los usuarios de la base en un arraylist
+	private ArrayList<String> cargarNombresUsuario(){
+		ArrayList<String> nombres=new ArrayList<String>();
+		
+		Modelo modelo=new Modelo();
+		
+		String sql="SELECT DISTINCT Nombreusu FROM usuarios";
+		
+		try {
+			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				nombres.add(rs.getString(1));
+			}
+			
+		}catch(SQLException e) {
+			System.err.println("Conexion Erronea, motivo del error: "+e);
+		}
+		
+		return nombres;
+	}
+	
+	//metodo para contar el numero de usuarios en la base de datos
+	private int contarUsuarios(){
+		Modelo modelo=new Modelo();
+	
+		int n_users=0;
+		
+		String sql="SELECT COUNT(*) FROM usuarios";
+		
+		try {
+			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				n_users=rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			System.err.println("Error de conexion, el motivo es: "+e);
+		}
+		
+		return n_users;
+		
+	}
+	
+	
+	//metodo para generar un código promocional 
+	private String generarCodigo() {
+		String codigo = null;
+		
+		
+		//definimos en un array el numero de posiciones que queremos, de esta forma el largo de nuestro codigo promocional
+		//será siempre el mismo
+		String[]posiciones= new String[10];
+		
+		int cont=0;
+		
+		
+		//generamos un numero que decidira si insertamos una letra o un numero
+		int gen=(int) Math.floor(Math.random()*2+1);
+		
+		
+		while(cont<posiciones.length) {
+			
+			switch(gen){
+			case 1:
+				codigo=Character.toString(generarLetra());
+				break;
+			case 2:
+				 codigo=Integer.toString(generarnumero());
+				break;
+			}
+			//guardamos el numero o letra generados
+			posiciones[cont]=codigo;
+			
+			//incrementamos el contador
+			cont++;
+		}
+		//guardamos en un solo String el conjunto de valores generados
+		codigo= posiciones.toString();
+		
+		
+		return codigo;
+	}
+	
+	//metodo que genera un numero entre 1 y 9
+	private int generarnumero() {
+		int num= (int) Math.floor(Math.random()*9+1);
+		return num;
+	}
+	//metodo que genera letras mayusculas de la A a la Z 
+	private char generarLetra() {
+		char letra= (char) Math.floor(Math.random()*(90-65+1)+65);
+		return letra;
+	}
 
 }
