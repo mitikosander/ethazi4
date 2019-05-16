@@ -97,42 +97,36 @@ public class Metodos {
 
 	}
 	/*
-	public ArrayList<String> cargarCiudades() {
-
-		Vista vista = new Vista();
-		Modelo modelo = new Modelo();
-		ArrayList<String> ciudades = new ArrayList<String>();
-		String sql = " ";
-
-		// Comprobamos el alojamiento seleccionado para cargar las ciudades
-		if (vista.getInicio().getRdbtnHotel().isSelected() == true) {
-			sql = "SELECT DISTINCT ubicacion FROM hoteles";
-		} else if (vista.getInicio().getRdbtnApartamento().isSelected() == true) {
-			sql = "SELECT DISTINCT ubicacion FROM apartamentos";
-		} else if (vista.getInicio().getRdbtnCasaRural().isSelected() == true) {
-			sql = "SELECT DISTINCT ubicacion FROM casarural";
-		} else {
-			System.err.println("No se ha seleccionado el tipo de alojamiento");
-		}
-
-		try {
-			modelo.getBasededatos().conectarBase();
-
-			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				ciudades.add(rs.getString(1));
-			}
-
-		} catch (SQLException e) {
-			System.err.println("Fallo en la conexion, motivo del error: \n" + e);
-		}
-
-		return ciudades;
-
-	}*/
+	 * public ArrayList<String> cargarCiudades() {
+	 * 
+	 * Vista vista = new Vista(); Modelo modelo = new Modelo(); ArrayList<String>
+	 * ciudades = new ArrayList<String>(); String sql = " ";
+	 * 
+	 * // Comprobamos el alojamiento seleccionado para cargar las ciudades if
+	 * (vista.getInicio().getRdbtnHotel().isSelected() == true) { sql =
+	 * "SELECT DISTINCT ubicacion FROM hoteles"; } else if
+	 * (vista.getInicio().getRdbtnApartamento().isSelected() == true) { sql =
+	 * "SELECT DISTINCT ubicacion FROM apartamentos"; } else if
+	 * (vista.getInicio().getRdbtnCasaRural().isSelected() == true) { sql =
+	 * "SELECT DISTINCT ubicacion FROM casarural"; } else {
+	 * System.err.println("No se ha seleccionado el tipo de alojamiento"); }
+	 * 
+	 * try { modelo.getBasededatos().conectarBase();
+	 * 
+	 * PreparedStatement ps =
+	 * modelo.getBasededatos().conectarBase().prepareStatement(sql);
+	 * 
+	 * ResultSet rs = ps.executeQuery();
+	 * 
+	 * while (rs.next()) { ciudades.add(rs.getString(1)); }
+	 * 
+	 * } catch (SQLException e) {
+	 * System.err.println("Fallo en la conexion, motivo del error: \n" + e); }
+	 * 
+	 * return ciudades;
+	 * 
+	 * }
+	 */
 
 	public ArrayList<String> cargarApartamentos(String nombreubicacion) {
 		Vista vista = new Vista();
@@ -443,7 +437,6 @@ public class Metodos {
 		}
 
 	}
-	
 
 	public static void guardar(String Nombre, String Apellido, String DNI, Date Fecha_nac) {
 		BBDD conectar = new BBDD();
@@ -455,13 +448,24 @@ public class Metodos {
 			stmt.setString(3, DNI);
 			stmt.setDate(4, Fecha_nac);
 			stmt.executeUpdate();
-	
+
 		} catch (Exception e) {
 			System.out.println("Error");
 		}
 
 	}
-	    
-	    
+
+	public static double codigos(String codigo, double precio) {
+		if (codigo.equals("promo1")) {
+			precio = precio - 50;
+			return precio;
+		} else if (codigo.equals("promo2")) {
+			precio = precio - 25;
+			return precio;
+		} else {
+			precio = precio + 0;
+			return precio;
+		}
+	}
 
 }
