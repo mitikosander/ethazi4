@@ -362,10 +362,7 @@ public class Metodos {
 		//generamos un numero entre 1 y el numero de usuarios que haya en la base
 		int n_users=contarUsuarios();
 		
-		int gen=-1;
-		
-		if(n_users !=0) {
-		 gen=(int) Math.floor(Math.random()*n_users+1);
+		int gen=(int) Math.floor(Math.random()*n_users);
 		
 		
 		//ahora seleccionamos de la base el nombre con el numero asignado
@@ -376,7 +373,7 @@ public class Metodos {
 		//ahora insertamos el codigo promocional al usuario en la base de datos
 			insertarCodigoPromo(asignar);
 		
-		}
+		
 	}
 	
 	
@@ -456,11 +453,11 @@ public class Metodos {
 		
 		
 		//generamos un numero que decidira si insertamos una letra o un numero
-		int gen=(int) Math.floor(Math.random()*2+1);
+		int gen;
 		
 		
 		while(cont<posiciones.length) {
-			
+			gen=(int) Math.floor(Math.random()*2+1);
 			switch(gen){
 			case 1:
 				codigo=Character.toString(generarLetra());
@@ -476,7 +473,10 @@ public class Metodos {
 			cont++;
 		}
 		//guardamos en un solo String el conjunto de valores generados
-		codigo= posiciones.toString();
+		for(int i=0;i<posiciones.length;i++) {
+			codigo+=posiciones[i];
+		}
+		
 		
 		
 		return codigo;
@@ -492,5 +492,21 @@ public class Metodos {
 		char letra= (char) Math.floor(Math.random()*(90-65+1)+65);
 		return letra;
 	}
+	
+	
+	//metodo que borra el codigo promocional de la base de datos al ser usado 
+	public void borrarPromo(String usuario) {
+		Modelo modelo=new Modelo();
+		String sql="UPDATE usuarios SET codigopromo=null WHERE Nombreusu LIKE '"+usuario+"'";
+		
+		try {
+			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ps.executeUpdate();
+		}catch(SQLException e) {
+			System.err.println("Actualizacion erronea, motivo: "+e);
+		}
+	}
+	
+	
 
 }
