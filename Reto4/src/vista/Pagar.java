@@ -165,6 +165,10 @@ setLayout(null);
 		textField_3.setBounds(240, 131, 116, 20);
 		add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton btnNewButton = new JButton("cod");
+		btnNewButton.setBounds(380, 133, 54, 23);
+		add(btnNewButton);
 	}
 	public JTextField gettextField() {
 		return (this.textField);
