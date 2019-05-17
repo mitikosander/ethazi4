@@ -28,7 +28,7 @@ public class Inicio extends JPanel {
 	private JComboBox combo_ubicacion;
 	private JButton btnseleccionar;
 	private ButtonGroup grupo;
-	private JDateChooser dateChooser,dateChooser_1;
+	private JDateChooser Calendar_entrada,Calendar_salida;
 
 	/**
 	 * Create the panel.
@@ -80,13 +80,13 @@ public class Inicio extends JPanel {
 		grupo.add(rdbtnHotel);
 		grupo.add(rdbtnCasaRural);
 		
-		dateChooser = new JDateChooser();
-		dateChooser.setBounds(36, 236, 95, 20);
-		add(dateChooser);
+		Calendar_entrada = new JDateChooser();
+		Calendar_entrada.setBounds(36, 236, 95, 20);
+		add(Calendar_entrada);
 		
-		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(299, 236, 95, 20);
-		add(dateChooser_1);
+		Calendar_salida = new JDateChooser();
+		Calendar_salida.setBounds(299, 236, 95, 20);
+		add(Calendar_salida);
 
 	}
 
@@ -154,21 +154,23 @@ public class Inicio extends JPanel {
 		this.combo_ubicacion = combo_ubicacion;
 	}
 
-	public JDateChooser getDateChooser() {
-		return dateChooser;
+	public JDateChooser getCalendar_entrada() {
+		return Calendar_entrada;
 	}
 
-	public void setDateChooser(JDateChooser dateChooser) {
-		this.dateChooser = dateChooser;
+	public void setCalendar_entrada(JDateChooser calendar_entrada) {
+		Calendar_entrada = calendar_entrada;
 	}
 
-	public JDateChooser getDateChooser_1() {
-		return dateChooser_1;
+	public JDateChooser getCalendar_salida() {
+		return Calendar_salida;
 	}
 
-	public void setDateChooser_1(JDateChooser dateChooser_1) {
-		this.dateChooser_1 = dateChooser_1;
+	public void setCalendar_salida(JDateChooser calendar_salida) {
+		Calendar_salida = calendar_salida;
 	}
+
+
 	
 	
 }
