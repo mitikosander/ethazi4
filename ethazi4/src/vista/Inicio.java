@@ -11,6 +11,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 public class Inicio extends JPanel {
 
@@ -24,11 +25,10 @@ public class Inicio extends JPanel {
 	private JRadioButton rdbtnApartamento;
 	private JRadioButton rdbtnHotel;
 	private JRadioButton rdbtnCasaRural;
-	private JCalendar calendar_entrada;
-	private JCalendar calendar_salida;
 	private JComboBox combo_ubicacion;
 	private JButton btnseleccionar;
 	private ButtonGroup grupo;
+	private JDateChooser Calendar_entrada,Calendar_salida;
 
 	/**
 	 * Create the panel.
@@ -38,7 +38,7 @@ public class Inicio extends JPanel {
 
 		btn_buscar_inicio = new JButton("Buscar");
 		btn_buscar_inicio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btn_buscar_inicio.setBounds(405, 392, 78, 23);
+		btn_buscar_inicio.setBounds(181, 310, 78, 23);
 		add(btn_buscar_inicio);
 
 		txtAquiVaEl = new JTextField();
@@ -55,16 +55,8 @@ public class Inicio extends JPanel {
 		lblFechaDeSalida.setBounds(299, 211, 96, 14);
 		add(lblFechaDeSalida);
 
-		calendar_entrada = new JCalendar();
-		calendar_entrada.setBounds(26, 230, 184, 153);
-		add(calendar_entrada);
-
-		calendar_salida = new JCalendar();
-		calendar_salida.setBounds(299, 230, 184, 153);
-		add(calendar_salida);
-
 		combo_ubicacion = new JComboBox();
-		combo_ubicacion.setBounds(161, 144, 158, 23);
+		combo_ubicacion.setBounds(44, 145, 158, 23);
 		add(combo_ubicacion);
 
 		rdbtnHotel = new JRadioButton("hotel");
@@ -80,13 +72,21 @@ public class Inicio extends JPanel {
 		add(rdbtnCasaRural);
 
 		btnseleccionar = new JButton("seleccionar");
-		btnseleccionar.setBounds(391, 141, 115, 29);
+		btnseleccionar.setBounds(274, 142, 115, 29);
 		add(btnseleccionar);
 
 		grupo = new ButtonGroup();
 		grupo.add(rdbtnApartamento);
 		grupo.add(rdbtnHotel);
 		grupo.add(rdbtnCasaRural);
+		
+		Calendar_entrada = new JDateChooser();
+		Calendar_entrada.setBounds(36, 236, 95, 20);
+		add(Calendar_entrada);
+		
+		Calendar_salida = new JDateChooser();
+		Calendar_salida.setBounds(299, 236, 95, 20);
+		add(Calendar_salida);
 
 	}
 
@@ -112,22 +112,6 @@ public class Inicio extends JPanel {
 
 	public void setBtn_buscar_inicio(JButton btn_buscar_inicio) {
 		this.btn_buscar_inicio = btn_buscar_inicio;
-	}
-
-	public JCalendar getCalendar_entrada() {
-		return calendar_entrada;
-	}
-
-	public void setCalendar_entrada(JCalendar calendar_entrada) {
-		this.calendar_entrada = calendar_entrada;
-	}
-
-	public JCalendar getCalendar_salida() {
-		return calendar_salida;
-	}
-
-	public void setCalendar_salida(JCalendar calendar_salida) {
-		this.calendar_salida = calendar_salida;
 	}
 
 	public JRadioButton getRdbtnApartamento() {
@@ -169,4 +153,24 @@ public class Inicio extends JPanel {
 	public void setCombo_ubicacion(JComboBox combo_ubicacion) {
 		this.combo_ubicacion = combo_ubicacion;
 	}
+
+	public JDateChooser getCalendar_entrada() {
+		return Calendar_entrada;
+	}
+
+	public void setCalendar_entrada(JDateChooser calendar_entrada) {
+		Calendar_entrada = calendar_entrada;
+	}
+
+	public JDateChooser getCalendar_salida() {
+		return Calendar_salida;
+	}
+
+	public void setCalendar_salida(JDateChooser calendar_salida) {
+		Calendar_salida = calendar_salida;
+	}
+
+
+	
+	
 }

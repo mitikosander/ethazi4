@@ -275,7 +275,7 @@ public class Metodos {
 			ps.setString(1, vista.getDatos_personas().getTxfnombre().getText());
 			ps.setString(2, vista.getDatos_personas().getTxfdni().getText());
 			ps.setString(3, vista.getDatos_personas().getTxfapellido().getText());
-			ps.setString(4, vista.getDatos_personas().getTxffecha().getText());
+			ps.setString(4, vista.getDatos_personas().getDateChooser().getDateFormatString());
 
 			ps.executeUpdate();
 

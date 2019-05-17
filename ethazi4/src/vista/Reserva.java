@@ -27,37 +27,43 @@ public class Reserva extends JPanel {
 		setLayout(null);
 
 		JLabel lblNombreDelEstablecimiento = new JLabel("Nombre del establecimiento : ");
-		lblNombreDelEstablecimiento.setBounds(27, 35, 150, 14);
+		lblNombreDelEstablecimiento.setBounds(101, 50, 150, 14);
 		add(lblNombreDelEstablecimiento);
 
 		tf_nombre_reserva = new JTextField();
-		tf_nombre_reserva.setBounds(175, 32, 86, 20);
+		tf_nombre_reserva.setEditable(false);
+		tf_nombre_reserva.setEnabled(false);
+		tf_nombre_reserva.setBounds(261, 47, 86, 20);
 		add(tf_nombre_reserva);
 		tf_nombre_reserva.setColumns(10);
 
 		JLabel lblTipoDeEstablecimiento = new JLabel("Tipo de establecimiento:");
-		lblTipoDeEstablecimiento.setBounds(27, 60, 130, 14);
+		lblTipoDeEstablecimiento.setBounds(121, 75, 130, 14);
 		add(lblTipoDeEstablecimiento);
 
 		tf_tipo_establecimiento = new JTextField();
-		tf_tipo_establecimiento.setBounds(156, 60, 86, 20);
+		tf_tipo_establecimiento.setEditable(false);
+		tf_tipo_establecimiento.setEnabled(false);
+		tf_tipo_establecimiento.setBounds(261, 72, 86, 20);
 		add(tf_tipo_establecimiento);
 		tf_tipo_establecimiento.setColumns(10);
 
 		JLabel lblFechaIda = new JLabel("Fecha ida: ");
-		lblFechaIda.setBounds(27, 85, 59, 14);
+		lblFechaIda.setBounds(181, 100, 59, 14);
 		add(lblFechaIda);
 
 		JLabel lblFechaVuelta = new JLabel("Fecha vuelta:");
-		lblFechaVuelta.setBounds(22, 110, 78, 14);
+		lblFechaVuelta.setBounds(169, 125, 71, 14);
 		add(lblFechaVuelta);
 
 		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setBounds(27, 198, 46, 14);
+		lblPrecio.setBounds(194, 198, 46, 14);
 		add(lblPrecio);
 
 		tf_precio_reserva = new JTextField();
-		tf_precio_reserva.setBounds(83, 195, 86, 20);
+		tf_precio_reserva.setEditable(false);
+		tf_precio_reserva.setEnabled(false);
+		tf_precio_reserva.setBounds(261, 195, 86, 20);
 		add(tf_precio_reserva);
 		tf_precio_reserva.setColumns(10);
 
@@ -70,30 +76,38 @@ public class Reserva extends JPanel {
 		add(btnCancelar_reserva);
 
 		tf_fecha_ida = new JTextField();
-		tf_fecha_ida.setBounds(91, 85, 86, 20);
+		tf_fecha_ida.setEditable(false);
+		tf_fecha_ida.setEnabled(false);
+		tf_fecha_ida.setBounds(261, 97, 86, 20);
 		add(tf_fecha_ida);
 		tf_fecha_ida.setColumns(10);
 
 		tf_fecha_vuelta = new JTextField();
-		tf_fecha_vuelta.setBounds(91, 110, 86, 20);
+		tf_fecha_vuelta.setEditable(false);
+		tf_fecha_vuelta.setEnabled(false);
+		tf_fecha_vuelta.setBounds(261, 122, 86, 20);
 		add(tf_fecha_vuelta);
 		tf_fecha_vuelta.setColumns(10);
 		
 		JLabel lblTipoPensin = new JLabel("Tipo Pensi\u00F3n:");
-		lblTipoPensin.setBounds(22, 135, 70, 14);
+		lblTipoPensin.setBounds(170, 150, 70, 14);
 		add(lblTipoPensin);
 		
 		JLabel lblTipoCama = new JLabel("Tipo Cama:");
-		lblTipoCama.setBounds(27, 173, 59, 14);
+		lblTipoCama.setBounds(181, 175, 59, 14);
 		add(lblTipoCama);
 		
 		texpension = new JTextField();
-		texpension.setBounds(91, 135, 86, 20);
+		texpension.setEditable(false);
+		texpension.setEnabled(false);
+		texpension.setBounds(261, 147, 86, 20);
 		add(texpension);
 		texpension.setColumns(10);
 		
 		textcama = new JTextField();
-		textcama.setBounds(91, 170, 86, 20);
+		textcama.setEditable(false);
+		textcama.setEnabled(false);
+		textcama.setBounds(261, 172, 86, 20);
 		add(textcama);
 		textcama.setColumns(10);
 		
@@ -183,4 +197,5 @@ public class Reserva extends JPanel {
 	public void setTextcama(JTextField textcama) {
 		this.textcama = textcama;
 	}
+	
 }
