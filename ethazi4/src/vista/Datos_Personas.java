@@ -4,13 +4,13 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
 
 
 public class Datos_Personas extends JPanel {
 	private JTextField txfnombre;
 	private JTextField txfapellido;
 	private JTextField txfdni;
-	private JTextField txffecha;
 	private JButton btnContinuar_dtpersonas, btnCancelar;
 	/**
 	 * Create the panel.
@@ -19,7 +19,7 @@ public class Datos_Personas extends JPanel {
 		setLayout(null);
 		
 		btnContinuar_dtpersonas = new JButton("Continuar");
-		btnContinuar_dtpersonas.setBounds(223, 250, 89, 23);
+		btnContinuar_dtpersonas.setBounds(270, 232, 89, 23);
 		add(btnContinuar_dtpersonas);
 		
 		JLabel lblDatosCliente = new JLabel("Datos Cliente");
@@ -27,44 +27,44 @@ public class Datos_Personas extends JPanel {
 		add(lblDatosCliente);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(26, 81, 46, 14);
+		lblNombre.setBounds(106, 66, 46, 14);
 		add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(26, 116, 46, 14);
+		lblApellido.setBounds(106, 101, 46, 14);
 		add(lblApellido);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setBounds(26, 153, 46, 14);
+		lblDni.setBounds(106, 138, 46, 14);
 		add(lblDni);
 		
-		JLabel lblFechanacddmmaaaa = new JLabel("Fecha_nac(dd-mm-aaaa):");
-		lblFechanacddmmaaaa.setBounds(26, 190, 130, 14);
+		JLabel lblFechanacddmmaaaa = new JLabel("Fecha de nacimiento:");
+		lblFechanacddmmaaaa.setBounds(106, 175, 109, 14);
 		add(lblFechanacddmmaaaa);
 		
 		txfnombre = new JTextField();
-		txfnombre.setBounds(95, 78, 86, 20);
+		txfnombre.setBounds(175, 63, 86, 20);
 		add(txfnombre);
 		txfnombre.setColumns(10);
 		
 		txfapellido = new JTextField();
-		txfapellido.setBounds(95, 113, 86, 20);
+		txfapellido.setBounds(175, 98, 86, 20);
 		add(txfapellido);
 		txfapellido.setColumns(10);
 		
 		txfdni = new JTextField();
-		txfdni.setBounds(95, 150, 86, 20);
+		txfdni.setBounds(175, 135, 86, 20);
 		add(txfdni);
 		txfdni.setColumns(10);
 		
-		txffecha = new JTextField();
-		txffecha.setBounds(162, 187, 86, 20);
-		add(txffecha);
-		txffecha.setColumns(10);
-		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(47, 250, 89, 23);
+		btnCancelar.setBounds(88, 232, 89, 23);
 		add(btnCancelar);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setDateFormatString("dd-mm-yyyy");
+		dateChooser.setBounds(214, 175, 95, 20);
+		add(dateChooser);
 
 	}
 	public JTextField getTxfnombre() {
@@ -103,6 +103,4 @@ public class Datos_Personas extends JPanel {
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
 	}
-	
-	
 }

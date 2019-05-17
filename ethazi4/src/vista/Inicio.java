@@ -11,6 +11,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 public class Inicio extends JPanel {
 
@@ -24,8 +25,6 @@ public class Inicio extends JPanel {
 	private JRadioButton rdbtnApartamento;
 	private JRadioButton rdbtnHotel;
 	private JRadioButton rdbtnCasaRural;
-	private JCalendar calendar_entrada;
-	private JCalendar calendar_salida;
 	private JComboBox combo_ubicacion;
 	private JButton btnseleccionar;
 	private ButtonGroup grupo;
@@ -38,7 +37,7 @@ public class Inicio extends JPanel {
 
 		btn_buscar_inicio = new JButton("Buscar");
 		btn_buscar_inicio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btn_buscar_inicio.setBounds(405, 392, 78, 23);
+		btn_buscar_inicio.setBounds(181, 310, 78, 23);
 		add(btn_buscar_inicio);
 
 		txtAquiVaEl = new JTextField();
@@ -55,16 +54,8 @@ public class Inicio extends JPanel {
 		lblFechaDeSalida.setBounds(299, 211, 96, 14);
 		add(lblFechaDeSalida);
 
-		calendar_entrada = new JCalendar();
-		calendar_entrada.setBounds(26, 230, 184, 153);
-		add(calendar_entrada);
-
-		calendar_salida = new JCalendar();
-		calendar_salida.setBounds(299, 230, 184, 153);
-		add(calendar_salida);
-
 		combo_ubicacion = new JComboBox();
-		combo_ubicacion.setBounds(161, 144, 158, 23);
+		combo_ubicacion.setBounds(44, 145, 158, 23);
 		add(combo_ubicacion);
 
 		rdbtnHotel = new JRadioButton("hotel");
@@ -80,13 +71,21 @@ public class Inicio extends JPanel {
 		add(rdbtnCasaRural);
 
 		btnseleccionar = new JButton("seleccionar");
-		btnseleccionar.setBounds(391, 141, 115, 29);
+		btnseleccionar.setBounds(274, 142, 115, 29);
 		add(btnseleccionar);
 
 		grupo = new ButtonGroup();
 		grupo.add(rdbtnApartamento);
 		grupo.add(rdbtnHotel);
 		grupo.add(rdbtnCasaRural);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(36, 236, 95, 20);
+		add(dateChooser);
+		
+		JDateChooser dateChooser_1 = new JDateChooser();
+		dateChooser_1.setBounds(299, 236, 95, 20);
+		add(dateChooser_1);
 
 	}
 
