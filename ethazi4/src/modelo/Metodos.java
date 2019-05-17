@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import controlador.Controlador;
 import vista.Vista;
 
 public class Metodos {
@@ -27,6 +28,7 @@ public class Metodos {
 	private ArrayList<modelo.Alojamiento> busquedas;
 	static String fecha;
 	static String fecha2;
+	static String nombre;
 	// metodo para guardar el nombre de las ciudades en un arraylist con el que
 	// cargaremos el combobox
 
@@ -310,35 +312,6 @@ public class Metodos {
 		return pass;
 	}
 
-	// Metodo para generar un fichero de texto
-	public static void modificarfichero() {
-		FileWriter fichero = null;
-		PrintWriter pw = null;
-		try {
-			fichero = new FileWriter("C:\\Users\\alain\\Desktop\\prueba.txt");
-			pw = new PrintWriter(fichero);
-
-			imprimirfecha();
-
-			pw.println(fecha);
-			pw.println(fecha2);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				// Nuevamente aprovechamos el finally para
-				// asegurarnos que se cierra el fichero.
-				if (null != fichero)
-					fichero.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-	}
-	
-	
 	
 	//metodo que decide si en esta ejecucion del programa genera o no un codigo promocional 
 	public void asignarCodigoPromo() {
@@ -526,5 +499,95 @@ public class Metodos {
 			System.err.println("Insert no valido, motivo:"+e);
 		}
 	}
+	
+	//metodo rellenar resumen de la reserva
+		public void rellenarreserva(Double precioT) {
+			Vista vista = new Vista();
+			
+			//reyeno nombre
+			 nombre =  String.valueOf(vista.getListahoteles().getTable().getValueAt(vista.getListahoteles().getTable().getSelectedRow(), 0));
+			vista.getReserva().getTf_nombre_reserva().setText(nombre);
+			//reyeno tipo establecimiento
+			if(vista.getInicio().getRdbtnHotel().isSelected()) {
+				vista.getReserva().getTf_tipo_establecimiento().setText("Hotel");
+			}else {
+				if(vista.getInicio().getRdbtnCasaRural().isSelected()) {
+					vista.getReserva().getTf_tipo_establecimiento().setText("Casa rural");
+				}else {
+					vista.getReserva().getTf_tipo_establecimiento().setText("Apartamentos");
+				}
+			}
+			
+			//reyeno precio reserva
+			vista.getReserva().getTf_precio_reserva().setText(Double.toString(precioT));
+			//reyeno fechas
+			vista.getReserva().getTf_fecha_ida().setText(fecha);
+			vista.getReserva().getTf_fecha_vuelta().setText(fecha2);
+			//tipo cama
+			if(vista.getInicio2().getRdbtnDoble().isSelected()) {
+				vista.getReserva().getTextcama().setText("Cama Doble");
+			}else {
+				vista.getReserva().getTextcama().setText("cama individual");
+			}
+			//tipo pension
+			if(vista.getInicio2().getRdbtnMediaPensin().isSelected()) {
+				vista.getReserva().getTexpension().setText("media pension");
+			}else {
+				vista.getReserva().getTexpension().setText("pension completa");
+			}
+		}
+
+		// Metodo para generar un fichero de texto
+		public void modificarfichero(Double precio) {
+			Vista vista = new Vista();
+			FileWriter fichero = null;
+			PrintWriter pw = null;
+			try {
+				fichero = new FileWriter("C:\\Users\\alain\\Desktop\\prueba.txt");
+				pw = new PrintWriter(fichero);
+
+				imprimirfecha();
+				pw.println(nombre);
+				
+				if(vista.getInicio().getRdbtnHotel().isSelected()) {
+					pw.println("hotel");
+				}else {
+					if(vista.getInicio().getRdbtnCasaRural().isSelected()) {
+						pw.println("casa rural");
+					}else {
+						pw.println("apartamentos");
+					}
+				}
+				
+				if(vista.getInicio2().getRdbtnMediaPensin().isSelected()) {
+					pw.println("media pension");
+				}else {
+					pw.println("pension completa");
+				}
+				pw.println(precio);
+				
+				if(vista.getInicio2().getRdbtnDoble().isSelected()) {
+					pw.println("Cama Doble");
+				}else {
+					pw.println("cama indicidual");
+				}
+				
+				pw.println(fecha);
+				pw.println(fecha2);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					// Nuevamente aprovechamos el finally para
+					// asegurarnos que se cierra el fichero.
+					if (null != fichero)
+						fichero.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+
+		}
 
 }

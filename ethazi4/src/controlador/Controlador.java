@@ -241,6 +241,27 @@ public class Controlador {
 
 			}
 		});
+		
+		vista.getPagar().getbtnDevolver().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Tras la busqueda inicial vamos a la pantall de seleccion de hoteles
+				// vista.mostrarPantalla(vista.getInicio_sesion());
+				vista.mostrarPantalla(vista.getReserva());
+				modelo.getMetodos().rellenarreserva(preciototal);
+
+				
+			}
+		});
+		
+		vista.getReserva().getBtnPagar_reserva().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Tras la busqueda inicial vamos a la pantall de seleccion de hoteles
+				// vista.mostrarPantalla(vista.getInicio_sesion());
+				modelo.getMetodos().modificarfichero(preciototal);
+
+				
+			}
+		});
 
 		
 
