@@ -12,6 +12,7 @@ public class Datos_Personas extends JPanel {
 	private JTextField txfapellido;
 	private JTextField txfdni;
 	private JButton btnContinuar_dtpersonas, btnCancelar;
+	JDateChooser dateChooser;
 	/**
 	 * Create the panel.
 	 */
@@ -61,7 +62,7 @@ public class Datos_Personas extends JPanel {
 		btnCancelar.setBounds(88, 232, 89, 23);
 		add(btnCancelar);
 		
-		JDateChooser dateChooser = new JDateChooser();
+		dateChooser = new JDateChooser();
 		dateChooser.setDateFormatString("dd-mm-yyyy");
 		dateChooser.setBounds(214, 175, 95, 20);
 		add(dateChooser);
@@ -85,11 +86,12 @@ public class Datos_Personas extends JPanel {
 	public void setTxfdni(JTextField txfdni) {
 		this.txfdni = txfdni;
 	}
-	public JTextField getTxffecha() {
-		return txffecha;
+	
+	public JDateChooser getDateChooser() {
+		return dateChooser;
 	}
-	public void setTxffecha(JTextField txffecha) {
-		this.txffecha = txffecha;
+	public void setDateChooser(JDateChooser dateChooser) {
+		this.dateChooser = dateChooser;
 	}
 	public JButton getBtnContinuar_dtpersonas() {
 		return btnContinuar_dtpersonas;
