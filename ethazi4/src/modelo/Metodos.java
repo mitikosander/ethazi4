@@ -543,7 +543,7 @@ public class Metodos {
 			FileWriter fichero = null;
 			PrintWriter pw = null;
 			try {
-				fichero = new FileWriter("C:\\Users\\alain\\Desktop\\prueba.txt");
+				fichero = new FileWriter("\\Desktop\\prueba.txt");
 				pw = new PrintWriter(fichero);
 
 				imprimirfecha();
@@ -569,7 +569,7 @@ public class Metodos {
 				if(vista.getInicio2().getRdbtnDoble().isSelected()) {
 					pw.println("Cama Doble");
 				}else {
-					pw.println("cama indicidual");
+					pw.println("cama individual");
 				}
 				
 				pw.println(fecha);
