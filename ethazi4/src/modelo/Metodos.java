@@ -480,25 +480,7 @@ public class Metodos {
 		}
 	}
 	
-	//Metodo para insertar la reserva en la BBDD
-	public void insertarReserva() {
-		String sql="INSERT INTO pedidos (`Fecha_res`, `Nombreusu`, `Precio`, `ID_Alojamiento`) VALUES (?,?,?,?)";
-		Modelo modelo=new Modelo();
-		
-		try {
-			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
-			
-			ps.setDate(1, null);
-			ps.setString(2, "");
-			ps.setDouble(3, 0.4);
-			ps.setString(4, "");
-			
-			ps.execute();
-			
-		}catch(SQLException e) {
-			System.err.println("Insert no valido, motivo:"+e);
-		}
-	}
+	
 	
 	//metodo rellenar resumen de la reserva
 		public void rellenarreserva(Double precioT) {
@@ -589,5 +571,30 @@ public class Metodos {
 			}
 
 		}
+		
+		
+		//Metodo que busca si el usuario registrado tiene un codigo promocional
+		public String consultarPromo(String usuario) {
+			String sql="SELECT codigopromo FROM usuarios WHERE Nombreusu LIKE '"+usuario+"'";
+			String codigopromo=null;
+			Modelo modelo=new Modelo();
+			
+			try {
+				PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				
+				//comprobamos si el resultado de la consulta no es nulo, si es el caso,devolvemos el codigo del usuario
+				while(rs.next()){
+					codigopromo=rs.getString(1);
+				}
+				
+			}catch(SQLException e) {
+			System.err.println("Conexion erronea, motivo: "+e);	
+			}
+			return codigopromo;
+			
+		}
+		
+		//Metodo que inserta los datos de la reserva en la BBDD
 
 }
