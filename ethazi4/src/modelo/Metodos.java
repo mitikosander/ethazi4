@@ -589,5 +589,28 @@ public class Metodos {
 			}
 
 		}
+		
+		
+		//Metodo que busca si el usuario registrado tiene un codigo promocional
+		public String consultarPromo(String usuario) {
+			String sql="SELECT codigopromo FROM usuarios WHERE Nombreusu LIKE '"+usuario+"'";
+			String codigopromo=null;
+			Modelo modelo=new Modelo();
+			
+			try {
+				PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				
+				//comprobamos si el resultado de la consulta no es nulo, si es el caso,devolvemos el codigo del usuario
+				while(rs.next()){
+					codigopromo=rs.getString(1);
+				}
+				
+			}catch(SQLException e) {
+			System.err.println("Conexion erronea, motivo: "+e);	
+			}
+			return codigopromo;
+			
+		}
 
 }

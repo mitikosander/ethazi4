@@ -15,7 +15,7 @@ public class Vista {
 	private Mostrar_Lista listahoteles;
 	private Reserva reserva;
 	private Opcionesavanzadas inicio2;
-	
+	private VerCodigoPromo vcodigopromo;
 	
 	public Vista() {
 		//Aqui completamos la instancia del objeto para poder acceder a sus atributos
@@ -28,6 +28,7 @@ public class Vista {
 		inicio_sesion = new Inicio_Sesion();
 		reserva = new Reserva();
 		inicio2 = new Opcionesavanzadas();
+		vcodigopromo= new VerCodigoPromo();
 	}
 	
 	public  void mostrarPantalla(JPanel panel) {
@@ -113,6 +114,18 @@ public class Vista {
 
 	public void setInicio2(Opcionesavanzadas inicio2) {
 		this.inicio2 = inicio2;
+	}
+
+	public VerCodigoPromo getVcodigopromo() {
+		return vcodigopromo;
+	}
+
+	public void setVcodigopromo(VerCodigoPromo vcodigopromo) {
+		this.vcodigopromo = vcodigopromo;
+	}
+
+	public void setBase_legal(Base_legal base_legal) {
+		this.base_legal = base_legal;
 	}
 
 
