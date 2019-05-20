@@ -3,8 +3,11 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -251,7 +254,7 @@ public class Controlador {
 				// Tras la busqueda inicial vamos a la pantall de seleccion de hoteles
 				// vista.mostrarPantalla(vista.getInicio_sesion());
 				vista.mostrarPantalla(vista.getReserva());
-				modelo.getMetodos().rellenarreserva(preciototal);
+				//modelo.getMetodos().rellenarreserva(preciototal);
 
 				
 			}
@@ -262,7 +265,10 @@ public class Controlador {
 				cargarDatosReserva();
 				
 				//comprobamos si el codigo escrito es correcto con el existente, se aplica el descuento
-				comprobarCodigoPromo(preciototal, codigopromo, vista.getPagar().getTxtCodigoPromo().getText());
+				preciototal=comprobarCodigoPromo(Double.parseDouble(vista.getPagar().gettextField().getText()), codigopromo, vista.getPagar().getTxtCodigoPromo().getText());
+				vista.getPagar().gettextField().setText(Double.toString(preciototal));
+				vista.getPagar().gettextField_1().setText(null);
+				vista.getPagar().gettextField_2().setText(null);
 				//despues de canjear el codigo promocional lo borramos de la base de datos
 				modelo.getMetodos().borrarPromo(nombreusu);
 			}
@@ -450,14 +456,18 @@ public class Controlador {
 	
 	//Metodo para insertar la reserva en la BBDD
 		private void insertarReserva() {
-			String sql="INSERT INTO pedidos (`Fecha_res_ida`, `Fecha_res_vuelta`, `Nombreusu`, `Precio`) VALUES (?,?,?,?)";
+			String sql="INSERT INTO pedidos (`Id_Reserva`,`Fecha_res_ida`, `Fecha_res_vuelta`, `Nombreusu`, `Precio`,`ID_Alojamiento`) VALUES (null,?,?,?,?,null)";
 			Modelo modelo=new Modelo();
+			
+			//formateamos bien las fechas para no tener problemas al insertar
+		
 			
 			try {
 				PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
 				
-				ps.setDate(1,(java.sql.Date) fecha_ida);
-				ps.setDate(2, (java.sql.Date) fecha_vuelta);
+			
+				ps.setDate(1, fechaFormatDate(fecha_ida));
+				ps.setDate(2,  fechaFormatDate(fecha_vuelta));
 				ps.setString(3, nombreusu);
 				ps.setDouble(4, preciototal);
 				
@@ -470,10 +480,21 @@ public class Controlador {
 		
 		//metodo para cargar datos en pantalla reserva
 		private void cargarDatosReserva() {
-			vista.getReserva().getTf_fecha_ida().setText(fecha_ida.toString());
-			vista.getReserva().getTf_fecha_vuelta().setText(fecha_vuelta.toString());
+			vista.getReserva().getTf_fecha_ida().setText( fechaFormatDate(fecha_ida).toString());
+			vista.getReserva().getTf_fecha_vuelta().setText( fechaFormatDate(fecha_ida).toString());
 			vista.getReserva().getTf_precio_reserva().setText(Double.toString(preciototal));
 			vista.getReserva().getTf_nombre_reserva().setText(nombreusu);
+		}
+		
+		
+		
+		//metodo para pasar la fecha formateada de String a Date
+		private java.sql.Date fechaFormatDate(Date fecha_) {
+			//SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+			
+			java.sql.Date fecha=new java.sql.Date(fecha_.getDate());
+			
+			return fecha;
 		}
 
 }

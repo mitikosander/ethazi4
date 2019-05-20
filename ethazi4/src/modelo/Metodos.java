@@ -482,42 +482,7 @@ public class Metodos {
 	
 	
 	
-	//metodo rellenar resumen de la reserva
-		public void rellenarreserva(Double precioT) {
-			Vista vista = new Vista();
-			
-			//reyeno nombre
-			 nombre =  String.valueOf(vista.getListahoteles().getTable().getValueAt(vista.getListahoteles().getTable().getSelectedRow(), 0));
-			vista.getReserva().getTf_nombre_reserva().setText(nombre);
-			//reyeno tipo establecimiento
-			if(vista.getInicio().getRdbtnHotel().isSelected()) {
-				vista.getReserva().getTf_tipo_establecimiento().setText("Hotel");
-			}else {
-				if(vista.getInicio().getRdbtnCasaRural().isSelected()) {
-					vista.getReserva().getTf_tipo_establecimiento().setText("Casa rural");
-				}else {
-					vista.getReserva().getTf_tipo_establecimiento().setText("Apartamentos");
-				}
-			}
-			
-			//reyeno precio reserva
-			vista.getReserva().getTf_precio_reserva().setText(Double.toString(precioT));
-			//reyeno fechas
-			vista.getReserva().getTf_fecha_ida().setText(fecha);
-			vista.getReserva().getTf_fecha_vuelta().setText(fecha2);
-			//tipo cama
-			if(vista.getInicio2().getRdbtnDoble().isSelected()) {
-				vista.getReserva().getTextcama().setText("Cama Doble");
-			}else {
-				vista.getReserva().getTextcama().setText("cama individual");
-			}
-			//tipo pension
-			if(vista.getInicio2().getRdbtnMediaPensin().isSelected()) {
-				vista.getReserva().getTexpension().setText("media pension");
-			}else {
-				vista.getReserva().getTexpension().setText("pension completa");
-			}
-		}
+
 
 		// Metodo para generar un fichero de texto
 		public void modificarfichero(Double precio) {
@@ -525,7 +490,7 @@ public class Metodos {
 			FileWriter fichero = null;
 			PrintWriter pw = null;
 			try {
-				fichero = new FileWriter("\\Desktop\\prueba.txt");
+				fichero = new FileWriter("C:\\Users\\IN1DM3B_09\\Desktop\\prueba.txt");
 				pw = new PrintWriter(fichero);
 
 				imprimirfecha();
