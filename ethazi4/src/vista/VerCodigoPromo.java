@@ -62,17 +62,7 @@ public class VerCodigoPromo extends JDialog {
 		txtCodigoPromo.setBounds(40, 95, 336, 97);
 		contentPanel.add(txtCodigoPromo);
 		txtCodigoPromo.setColumns(10);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-		}
+		
 	}
 
 	public JTextField getTxtCodigoPromo() {
