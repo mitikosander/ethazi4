@@ -44,7 +44,7 @@ public class Controlador {
 		initalizeEvents();
 
 	}
-
+//*
 	private void initalizeEvents() {
 
 		vista.getInicio().getBtnseleccionar().addActionListener(new ActionListener() {
