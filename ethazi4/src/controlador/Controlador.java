@@ -186,7 +186,8 @@ public class Controlador {
 							//aqui comprobamos si el usuario tiene un codigo promocional 
 							nombreusu=vista.getInicio_sesion().getTf_Usuario_Inicio_Sesion().getText();
 							 codigopromo=modelo.getMetodos().consultarPromo(nombreusu);
-							if(codigopromo!=null) {
+							
+							 if(codigopromo!=null) {
 								
 								//mostrar un JDialog con el codigo para que el usuario pueda canjearlo
 								vista.getVcodigopromo().getTxtCodigoPromo().setText(codigopromo);

@@ -552,11 +552,16 @@ public class Metodos {
 				while(rs.next()){
 					codigopromo=rs.getString(1);
 				}
-				
+				if(codigopromo !=null) {
+				return codigopromo;
+				}else {
+					return null;
+				}
 			}catch(SQLException e) {
 			System.err.println("Conexion erronea, motivo: "+e);	
+			return null;
 			}
-			return codigopromo;
+			
 			
 		}
 		
