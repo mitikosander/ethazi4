@@ -4,8 +4,7 @@ import javax.swing.JPanel;
 
 public class Vista {
 
-	
-	//Aqui crear la instancia en privado de los objetos de cada clase
+	// Aqui crear la instancia en privado de los objetos de cada clase
 	private Contenedor ventana;
 	private Inicio inicio;
 	private Pagar pagar;
@@ -16,25 +15,25 @@ public class Vista {
 	private Reserva reserva;
 	private Opcionesavanzadas inicio2;
 	private VerCodigoPromo vcodigopromo;
-	
+
 	public Vista() {
-		//Aqui completamos la instancia del objeto para poder acceder a sus atributos
-		ventana=new Contenedor();
-		inicio=new Inicio();
-		pagar=new Pagar();
-		listahoteles=new Mostrar_Lista();
-		base_legal=new Base_legal();
+		// Aqui completamos la instancia del objeto para poder acceder a sus atributos
+		ventana = new Contenedor();
+		inicio = new Inicio();
+		pagar = new Pagar();
+		listahoteles = new Mostrar_Lista();
+		base_legal = new Base_legal();
 		datos_personas = new Datos_Personas();
 		inicio_sesion = new Inicio_Sesion();
 		reserva = new Reserva();
 		inicio2 = new Opcionesavanzadas();
-		vcodigopromo= new VerCodigoPromo();
+		vcodigopromo = new VerCodigoPromo();
 	}
-	
-	public  void mostrarPantalla(JPanel panel) {
+
+	public void mostrarPantalla(JPanel panel) {
 		ventana.setContentPane(panel);
 		ventana.setVisible(true);
-		
+
 	}
 
 	public Contenedor getVentana() {
@@ -61,8 +60,6 @@ public class Vista {
 		this.pagar = pagar;
 	}
 
-	
-
 	public Mostrar_Lista getListahoteles() {
 		return listahoteles;
 	}
@@ -71,7 +68,6 @@ public class Vista {
 		this.listahoteles = listahoteles;
 	}
 
-	
 	public Base_legal getBase_legal() {
 		return base_legal;
 	}
@@ -80,8 +76,6 @@ public class Vista {
 		this.base_legal = base_legal;
 	}
 
-	
-
 	public Datos_Personas getDatos_personas() {
 		return datos_personas;
 	}
@@ -89,8 +83,6 @@ public class Vista {
 	public void setDatos_personas(Datos_Personas datos_personas) {
 		this.datos_personas = datos_personas;
 	}
-
-
 
 	public Inicio_Sesion getInicio_sesion() {
 		return inicio_sesion;
@@ -127,8 +119,5 @@ public class Vista {
 	public void setBase_legal(Base_legal base_legal) {
 		this.base_legal = base_legal;
 	}
-
-
-	
 
 }
