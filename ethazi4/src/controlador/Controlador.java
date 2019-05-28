@@ -1,3 +1,8 @@
+/*
+ * @author Alexander,Alain y Koldo
+ */
+
+
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -422,7 +427,9 @@ public class Controlador {
 	private void rellenarresumendatos() {
 
 	}
-
+/*
+ * @param metodo que recibe una cantidad y despues suma lo que pagues segun el boton que pulses se recibe un valor
+ */
 	private void SumarIntroducido(double cantidad) {
 		Introducido = Introducido + cantidad;
 		vista.getPagar().gettextField_1().setText(Double.toString(Introducido));
@@ -438,8 +445,12 @@ public class Controlador {
 		}
 	}
 
-	// Metodo que comprueba si el codigo promocional escrito y el recibido coinciden
-	// para reducir el precio
+	
+	/*
+	 * @param recibimos un preciototal, un string que guarda el dato recibido de la base y un String con el dato que escribimos en la pantalla
+	 * @return devuelve el precio de nuestra reserva reducido si el canjeo del codigo promocional ha coincidido, si no devuelve su valor normal
+	 */
+	
 	private double comprobarCodigoPromo(double preciototal, String recibido, String escrito) {
 
 		if (escrito.equals(recibido)) {

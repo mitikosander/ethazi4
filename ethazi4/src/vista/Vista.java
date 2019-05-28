@@ -1,3 +1,7 @@
+/*
+ * @author Alexander,Alain y Koldo
+ */
+
 package vista;
 
 import javax.swing.JPanel;
@@ -30,6 +34,9 @@ public class Vista {
 		vcodigopromo = new VerCodigoPromo();
 	}
 
+	/*
+	 * @param recibe un panel que despues mostrará en nuestro JFrame
+	 */
 	public void mostrarPantalla(JPanel panel) {
 		ventana.setContentPane(panel);
 		ventana.setVisible(true);

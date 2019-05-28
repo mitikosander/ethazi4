@@ -1,3 +1,6 @@
+/*
+ * @author Alexander,Alain y Koldo
+ */
 package modelo;
 
 import java.io.FileWriter;
@@ -29,6 +32,11 @@ public class Metodos {
 	static String fecha;
 	static String fecha2;
 	static String nombre;
+	
+	/*
+	 * @return metodo que devuelve un arrayList de Strings despues de cargarlo con los datos de la BBDD
+	 */
+	
 	// metodo para guardar el nombre de las ciudades en un arraylist con el que
 	// cargaremos el combobox
 
@@ -52,7 +60,9 @@ public class Metodos {
 		}
 
 	}
-
+	/*
+	 * @return metodo que devuelve un arrayList de Strings despues de cargarlo con los datos de la BBDD
+	 */
 	public ArrayList<String> cargarciudadesCasas() {
 		casas = new ArrayList<String>();
 		String sql = "SELECT DISTINCT ubicacion FROM casarural";
@@ -73,6 +83,9 @@ public class Metodos {
 		}
 
 	}
+	/*
+	 * @return metodo que devuelve un arrayList de Strings despues de cargarlo con los datos de la BBDD
+	 */
 
 	public ArrayList<String> cargarciudadesapartamentos() {
 		apartamentos = new ArrayList<String>();
@@ -94,7 +107,10 @@ public class Metodos {
 		}
 
 	}
-
+	/*
+	 * @param recibimos un String de ubicacion para seleccionar de la base solo los alojamientos de esa ubicacion
+	 * @return metodo que devuelve una tabla formateada en la cual se mostraran los datos consultados a la BBDD
+	 */
 	public DefaultTableModel cargarTablahoteles(String ubicacion) {
 
 		Vista vista = new Vista();
@@ -138,7 +154,10 @@ public class Metodos {
 		return modelo;
 
 	}
-
+	/*
+	 * @param recibimos un String de ubicacion para seleccionar de la base solo los alojamientos de esa ubicacion
+	 * @return metodo que devuelve una tabla formateada en la cual se mostraran los datos consultados a la BBDD
+	 */
 	public DefaultTableModel cargarTablaapartamentos(String ubicacion) {
 
 		Vista vista = new Vista();
@@ -181,7 +200,10 @@ public class Metodos {
 		return modelo;
 
 	}
-
+	/*
+	 * @param recibimos un String de ubicacion para seleccionar de la base solo los alojamientos de esa ubicacion
+	 * @return metodo que devuelve una tabla formateada en la cual se mostraran los datos consultados a la BBDD
+	 */
 	public DefaultTableModel cargarTablacasasrurales(String ubicacion) {
 
 		Vista vista = new Vista();
@@ -238,11 +260,15 @@ public class Metodos {
 		fecha2 = (dia2 + "-" + mes2 + "-" + year2);
 
 	}
+	/*
+	 * @param recibimos dos Strings uno contendra un nombre de usuario y el otro una contraseña que encriptaremos 
+	 * @return si el valor de nuestros parametros coincide con los de la base, devolveremos un valor true para decir que coinciden y existen
+	 */
 
-	public boolean comprobarLogin(String dni, String pass) {
+	public boolean comprobarLogin(String nombreusu, String pass) {
 		pass = encriptarPass(pass);
 		BBDD conectar = new BBDD();
-		String sql = "SELECT Nombreusu,Contrasena FROM usuarios WHERE Nombreusu LIKE '" + dni
+		String sql = "SELECT Nombreusu,Contrasena FROM usuarios WHERE Nombreusu LIKE '" + nombreusu
 				+ "' AND Contrasena LIKE '" + pass + "'";
 
 		try {
@@ -304,6 +330,12 @@ public class Metodos {
 	 * 25d55ad283aa400af464c76d713c07ad (12345678) e919c49d5f0cd737285367810a3394d0
 	 * (hotel) 81dc9bdb52d04dc20036dbd8313ed055 (1234)
 	 */
+	
+	
+	/*
+	 * @param recibimos un String que despues encriptaremos
+	 * @return devolveremos el String encriptado
+	 */
 	public String encriptarPass(String pass) {
 
 		pass = DigestUtils.md5Hex(pass);
@@ -361,7 +393,9 @@ public class Metodos {
 		}
 	}
 
-	// metodo que carga el nombre de todos los usuarios de la base en un arraylist
+	/*
+	 * @return este metodo devuelve en un Arraylist todos los nombres de usuarios de la BBDD
+	 */
 	private ArrayList<String> cargarNombresUsuario() {
 		ArrayList<String> nombres = new ArrayList<String>();
 
@@ -384,7 +418,9 @@ public class Metodos {
 		return nombres;
 	}
 
-	// metodo para contar el numero de usuarios en la base de datos
+/*
+ * @return devolvemos en un valor Integer el numero de usuarios que hay en la tabla de la BBDD
+ */
 	private int contarUsuarios() {
 		Modelo modelo = new Modelo();
 
@@ -408,7 +444,9 @@ public class Metodos {
 
 	}
 
-	// metodo para generar un código promocional
+	/*
+	 * @return Generamos aleatoriamente numeros y letras que despues devolveremos en forma de String 
+	 */
 	private String generarCodigo() {
 		String codigo = null;
 
@@ -446,19 +484,25 @@ public class Metodos {
 		return codigo;
 	}
 
-	// metodo que genera un numero entre 1 y 9
+	/*
+	 * @return se genera un numero entre el 1 y el 9 
+	 */
 	private int generarnumero() {
 		int num = (int) Math.floor(Math.random() * 9 + 1);
 		return num;
 	}
 
-	// metodo que genera letras mayusculas de la A a la Z
+	/*
+	 * @return se devuelve una letra entre la A y la Z 
+	 */
 	private char generarLetra() {
 		char letra = (char) Math.floor(Math.random() * (90 - 65 + 1) + 65);
 		return letra;
 	}
 
-	// metodo que borra el codigo promocional de la base de datos al ser usado
+	/*
+	 * @param Recibimos un usuario del cual se borrará el codigo promocional
+	 */
 	public void borrarPromo(String usuario) {
 		Modelo modelo = new Modelo();
 		String sql = "UPDATE usuarios SET codigopromo=null WHERE Nombreusu LIKE '" + usuario + "'";
@@ -471,7 +515,9 @@ public class Metodos {
 		}
 	}
 
-	// Metodo para generar un fichero de texto
+/*
+ * @param recibimos un valor Double precio que se utilizará para imprimirlo en el fichero
+ */
 	public void modificarfichero(Double precio) {
 		Vista vista = new Vista();
 		FileWriter fichero = null;
@@ -524,7 +570,10 @@ public class Metodos {
 
 	}
 
-	// Metodo que busca si el usuario registrado tiene un codigo promocional
+	/*
+	 * @param recibimos un usuario para comprobar en la BBDD si este tiene un codigo promocional asignado
+	 * @return devuelve el codigo promocional de ser existente de lo contrario pasamos un nulo
+	 */
 	public String consultarPromo(String usuario) {
 		String sql = "SELECT codigopromo FROM usuarios WHERE Nombreusu LIKE '" + usuario + "'";
 		String codigopromo = null;
@@ -551,6 +600,6 @@ public class Metodos {
 
 	}
 
-	// Metodo que inserta los datos de la reserva en la BBDD
+	
 
 }
