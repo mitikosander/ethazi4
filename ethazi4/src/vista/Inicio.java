@@ -28,7 +28,7 @@ public class Inicio extends JPanel {
 	private JComboBox combo_ubicacion;
 	private JButton btnseleccionar;
 	private ButtonGroup grupo;
-	private JDateChooser Calendar_entrada,Calendar_salida;
+	private JDateChooser Calendar_entrada, Calendar_salida;
 
 	/**
 	 * Create the panel.
@@ -79,11 +79,11 @@ public class Inicio extends JPanel {
 		grupo.add(rdbtnApartamento);
 		grupo.add(rdbtnHotel);
 		grupo.add(rdbtnCasaRural);
-		
+
 		Calendar_entrada = new JDateChooser();
 		Calendar_entrada.setBounds(36, 236, 95, 20);
 		add(Calendar_entrada);
-		
+
 		Calendar_salida = new JDateChooser();
 		Calendar_salida.setBounds(299, 236, 95, 20);
 		add(Calendar_salida);
@@ -170,7 +170,4 @@ public class Inicio extends JPanel {
 		Calendar_salida = calendar_salida;
 	}
 
-
-	
-	
 }

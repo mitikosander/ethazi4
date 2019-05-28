@@ -2,49 +2,50 @@ package modelo;
 
 public class Alojamiento {
 
-	//ATRIBUTOS
-    protected int num_habitaciones;
-    protected int num_camas;
-    protected String tipo_cama;
-    protected String pension;
-    protected String ubicacion;
-    protected String nombre;
-    protected boolean wifi;
-    protected boolean piscina;
-    protected boolean spa;
-    protected boolean parking;
-    protected boolean aire;
-    protected boolean restaurante;
-    protected boolean bar;
-    protected boolean gimnasio;
-    protected double precio;
+	// ATRIBUTOS
+	protected int num_habitaciones;
+	protected int num_camas;
+	protected String tipo_cama;
+	protected String pension;
+	protected String ubicacion;
+	protected String nombre;
+	protected boolean wifi;
+	protected boolean piscina;
+	protected boolean spa;
+	protected boolean parking;
+	protected boolean aire;
+	protected boolean restaurante;
+	protected boolean bar;
+	protected boolean gimnasio;
+	protected double precio;
 //: wifi, piscina, spa, parking, aire acondicionado, restaurante, bar y gimnasio
-    
-    //CONSTRUCTOR VACIO
-    public Alojamiento() {
-    }
-    
-    //CONSTRUCTOR
-    public Alojamiento(int num_habitaciones, int num_camas,  String tipo_cama, String pension, String ubicacion, String nombre, boolean wifi,
-     boolean piscina, boolean spa, boolean parking, boolean aire,boolean restaurante, boolean bar, boolean gimnasio, double precio) {
-        this.num_habitaciones = num_habitaciones;
-        this.num_camas = num_camas;
-        this.tipo_cama = tipo_cama;
-        this.pension = pension;
-        this.ubicacion = ubicacion;
-        this.nombre = nombre;
-        this.wifi = wifi;
-        this.piscina = piscina;
-        this.spa = spa;
-        this.parking = parking;
-        this.aire = aire;
-        this.restaurante = restaurante;
-        this.bar = bar;
-        this.gimnasio = gimnasio;
-        this.precio=precio;
-    }
-    
-    public int getNum_habitaciones() {
+
+	// CONSTRUCTOR VACIO
+	public Alojamiento() {
+	}
+
+	// CONSTRUCTOR
+	public Alojamiento(int num_habitaciones, int num_camas, String tipo_cama, String pension, String ubicacion,
+			String nombre, boolean wifi, boolean piscina, boolean spa, boolean parking, boolean aire,
+			boolean restaurante, boolean bar, boolean gimnasio, double precio) {
+		this.num_habitaciones = num_habitaciones;
+		this.num_camas = num_camas;
+		this.tipo_cama = tipo_cama;
+		this.pension = pension;
+		this.ubicacion = ubicacion;
+		this.nombre = nombre;
+		this.wifi = wifi;
+		this.piscina = piscina;
+		this.spa = spa;
+		this.parking = parking;
+		this.aire = aire;
+		this.restaurante = restaurante;
+		this.bar = bar;
+		this.gimnasio = gimnasio;
+		this.precio = precio;
+	}
+
+	public int getNum_habitaciones() {
 		return num_habitaciones;
 	}
 
@@ -163,8 +164,5 @@ public class Alojamiento {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-
-
-    
 
 }

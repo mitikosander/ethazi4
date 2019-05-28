@@ -18,7 +18,7 @@ import vista.Vista;
 public class Controlador {
 	private static Vista vista;
 	private Modelo modelo;
-	//private ArrayList<modelo.Alojamiento> alojamientos;
+	// private ArrayList<modelo.Alojamiento> alojamientos;
 	public double Adevolver = 0;
 	public double Introducido = 0;
 	public double preciototal = 0;
@@ -29,14 +29,15 @@ public class Controlador {
 	private String codigopromo;
 	private Date fecha_ida;
 	private Date fecha_vuelta;
+
 	public Controlador(Vista vista, Modelo modelo) {
 		Controlador.vista = vista;
 		this.modelo = modelo;
 
 		// Cargamos la pantalla principal
 		vista.mostrarPantalla(vista.getInicio());
-		
-		//llamamos al metodo que asigna codigos promocionales
+
+		// llamamos al metodo que asigna codigos promocionales
 		modelo.getMetodos().asignarCodigoPromo();
 
 		// Cargamos el comboBox con las ciudades
@@ -44,6 +45,7 @@ public class Controlador {
 		initalizeEvents();
 
 	}
+
 //*
 	private void initalizeEvents() {
 
@@ -75,17 +77,16 @@ public class Controlador {
 						vista.getInicio2().getTextField().setText("Temporada Baja");
 					}
 				}
-				//guardamos las fechas seleccionadas para la reserva
-				fecha_ida=(Date) vista.getInicio().getCalendar_salida().getDate();
-				fecha_vuelta=(Date) vista.getInicio().getCalendar_entrada().getDate();
+				// guardamos las fechas seleccionadas para la reserva
+				fecha_ida = (Date) vista.getInicio().getCalendar_salida().getDate();
+				fecha_vuelta = (Date) vista.getInicio().getCalendar_entrada().getDate();
 				vista.mostrarPantalla(vista.getInicio2());
 
 			}
 		});
 		vista.getInicio2().getBtnSiguiente().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+
 				if (vista.getInicio().getRdbtnHotel().isSelected()) {
 					vista.mostrarPantalla(vista.getListahoteles());
 
@@ -126,7 +127,7 @@ public class Controlador {
 		});
 		vista.getListahoteles().getBtnaceptar_mostrar_lista().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				vista.mostrarPantalla(vista.getInicio_sesion());
 			}
 		});
@@ -153,8 +154,7 @@ public class Controlador {
 			public void actionPerformed(ActionEvent arg0) {
 				// Tras la busqueda inicial vamos a la pantall de seleccion de hoteles
 				try {
-					
-					
+
 					// chekar si el usuario escrbio el nombre de usuario y pw
 					if (vista.getInicio_sesion().getTf_Usuario_Inicio_Sesion().getText().length() > 0
 							&& vista.getInicio_sesion().getPf_Contra_Inicio_Sesion().getText().length() > 0) {
@@ -174,27 +174,27 @@ public class Controlador {
 							if (vista.getInicio2().getRdbtnPensinCompleta().isSelected()) {
 								preciototal = preciototal + 100;
 							}
-							if (vista.getInicio2().getTextField().getText().equals("Temporada Alta") ) {
+							if (vista.getInicio2().getTextField().getText().equals("Temporada Alta")) {
 								preciototal = preciototal + 100;
 							} else {
-								if (vista.getInicio2().getTextField().getText().equals("Temporada Media") ) {
+								if (vista.getInicio2().getTextField().getText().equals("Temporada Media")) {
 									preciototal = preciototal + 50;
 								}
-								
+
 							}
-							
-							//aqui comprobamos si el usuario tiene un codigo promocional 
-							nombreusu=vista.getInicio_sesion().getTf_Usuario_Inicio_Sesion().getText();
-							 codigopromo=modelo.getMetodos().consultarPromo(nombreusu);
-							
-							 if(codigopromo!=null) {
-								
-								//mostrar un JDialog con el codigo para que el usuario pueda canjearlo
+
+							// aqui comprobamos si el usuario tiene un codigo promocional
+							nombreusu = vista.getInicio_sesion().getTf_Usuario_Inicio_Sesion().getText();
+							codigopromo = modelo.getMetodos().consultarPromo(nombreusu);
+
+							if (codigopromo != null) {
+
+								// mostrar un JDialog con el codigo para que el usuario pueda canjearlo
 								vista.getVcodigopromo().getTxtCodigoPromo().setText(codigopromo);
-								vista.getVcodigopromo().getLblBienvenido().setText("Bienvenido " +nombreusu);
+								vista.getVcodigopromo().getLblBienvenido().setText("Bienvenido " + nombreusu);
 								vista.getVcodigopromo().setVisible(true);
 							}
-							
+
 							vista.mostrarPantalla(vista.getBase_legal());
 							vista.getPagar().gettextField().setText(Double.toString(preciototal));
 
@@ -217,7 +217,7 @@ public class Controlador {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 
@@ -244,49 +244,47 @@ public class Controlador {
 
 		vista.getInicio_sesion().getBtnCancelar_Inicio_Sesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				vista.mostrarPantalla(vista.getInicio());
 
 			}
 		});
-		
+
 		vista.getPagar().getbtnDevolver().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Tras la busqueda inicial vamos a la pantall de seleccion de hoteles
 				// vista.mostrarPantalla(vista.getInicio_sesion());
 				vista.mostrarPantalla(vista.getReserva());
-				//modelo.getMetodos().rellenarreserva(preciototal);
+				// modelo.getMetodos().rellenarreserva(preciototal);
 
-				
 			}
 		});
-		
-		vista.getPagar().getBtnOk().addActionListener(new ActionListener(){
+
+		vista.getPagar().getBtnOk().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cargarDatosReserva();
-				
-				//comprobamos si el codigo escrito es correcto con el existente, se aplica el descuento
-				preciototal=comprobarCodigoPromo(Double.parseDouble(vista.getPagar().gettextField().getText()), codigopromo, vista.getPagar().getTxtCodigoPromo().getText());
+
+				// comprobamos si el codigo escrito es correcto con el existente, se aplica el
+				// descuento
+				preciototal = comprobarCodigoPromo(Double.parseDouble(vista.getPagar().gettextField().getText()),
+						codigopromo, vista.getPagar().getTxtCodigoPromo().getText());
 				vista.getPagar().gettextField().setText(Double.toString(preciototal));
 				vista.getPagar().gettextField_1().setText(null);
 				vista.getPagar().gettextField_2().setText(null);
-				//despues de canjear el codigo promocional lo borramos de la base de datos
+				// despues de canjear el codigo promocional lo borramos de la base de datos
 				modelo.getMetodos().borrarPromo(nombreusu);
 			}
 		});
-		
+
 		vista.getReserva().getBtnPagar_reserva().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Tras la busqueda inicial vamos a la pantall de seleccion de hoteles
 				// vista.mostrarPantalla(vista.getInicio_sesion());
 				insertarReserva();
 				modelo.getMetodos().modificarfichero(preciototal);
-				
-				
+
 			}
 		});
-
-		
 
 		vista.getPagar().getbtn50euro().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -440,62 +438,57 @@ public class Controlador {
 		}
 	}
 
-	
-	//Metodo que comprueba si el codigo promocional escrito y el recibido coinciden para reducir el precio
-	private double comprobarCodigoPromo(double preciototal,String recibido,String escrito) {
-			
-		if(escrito.equals(recibido)) {
-			return preciototal*0.25;
-		}else {
+	// Metodo que comprueba si el codigo promocional escrito y el recibido coinciden
+	// para reducir el precio
+	private double comprobarCodigoPromo(double preciototal, String recibido, String escrito) {
+
+		if (escrito.equals(recibido)) {
+			return preciototal * 0.25;
+		} else {
 			return preciototal;
 		}
-		
+
 	}
-	
-	
-	//metodo para insertar los datos de la reserva en la BBDD
-	
-	//Metodo para insertar la reserva en la BBDD
-		private void insertarReserva() {
-			String sql="INSERT INTO pedidos (`Id_Reserva`,`Fecha_res_ida`, `Fecha_res_vuelta`, `Nombreusu`, `Precio`,`ID_Alojamiento`) VALUES (null,?,?,?,?,null)";
-			Modelo modelo=new Modelo();
-			
-			//formateamos bien las fechas para no tener problemas al insertar
-		
-			
-			try {
-				PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
-				
-			
-				ps.setDate(1, fechaFormatDate(fecha_ida));
-				ps.setDate(2,  fechaFormatDate(fecha_vuelta));
-				ps.setString(3, nombreusu);
-				ps.setDouble(4, preciototal);
-				
-				ps.execute();
-				
-			}catch(SQLException e) {
-				System.err.println("Insert no valido, motivo:"+e);
-			}
+
+	// metodo para insertar los datos de la reserva en la BBDD
+
+	// Metodo para insertar la reserva en la BBDD
+	private void insertarReserva() {
+		String sql = "INSERT INTO pedidos (`Id_Reserva`,`Fecha_res_ida`, `Fecha_res_vuelta`, `Nombreusu`, `Precio`,`ID_Alojamiento`) VALUES (null,?,?,?,?,null)";
+		Modelo modelo = new Modelo();
+
+		// formateamos bien las fechas para no tener problemas al insertar
+
+		try {
+			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
+
+			ps.setDate(1, fechaFormatDate(fecha_ida));
+			ps.setDate(2, fechaFormatDate(fecha_vuelta));
+			ps.setString(3, nombreusu);
+			ps.setDouble(4, preciototal);
+
+			ps.execute();
+
+		} catch (SQLException e) {
+			System.err.println("Insert no valido, motivo:" + e);
 		}
-		
-		//metodo para cargar datos en pantalla reserva
-		private void cargarDatosReserva() {
-			vista.getReserva().getTf_fecha_ida().setText( fechaFormatDate(fecha_ida).toString());
-			vista.getReserva().getTf_fecha_vuelta().setText( fechaFormatDate(fecha_ida).toString());
-			vista.getReserva().getTf_precio_reserva().setText(Double.toString(preciototal));
-			vista.getReserva().getTf_nombre_reserva().setText(nombreusu);
-		}
-		
-		
-		
-		//metodo para pasar la fecha formateada de String a Date
-		private java.sql.Date fechaFormatDate(Date fecha_) {
-			//SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-			
-			java.sql.Date fecha=new java.sql.Date(fecha_.getDate());
-			
-			return fecha;
-		}
+	}
+
+	// metodo para cargar datos en pantalla reserva
+	private void cargarDatosReserva() {
+		vista.getReserva().getTf_fecha_ida().setText(fechaFormatDate(fecha_ida).toString());
+		vista.getReserva().getTf_fecha_vuelta().setText(fechaFormatDate(fecha_ida).toString());
+		vista.getReserva().getTf_precio_reserva().setText(Double.toString(preciototal));
+		vista.getReserva().getTf_nombre_reserva().setText(nombreusu);
+	}
+
+	// metodo para pasar la fecha formateada de String a Date
+	private java.sql.Date fechaFormatDate(Date fecha_) {
+		// SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+
+		java.sql.Date fecha = new java.sql.Date(fecha_.getDate());
+
+		return fecha;
+	}
 
 }

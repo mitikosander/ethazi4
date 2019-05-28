@@ -43,26 +43,27 @@ public class VerCodigoPromo extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		 lblBienvenido = new JLabel("Bienvenido ");
+
+		lblBienvenido = new JLabel("Bienvenido ");
 		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblBienvenido.setBounds(122, 11, 208, 28);
 		contentPanel.add(lblBienvenido);
-		
+
 		JLabel lbltienesSuerteHas = new JLabel("\u00A1TIENES SUERTE! Has conseguido un Codigo Promocional\r\n");
 		lbltienesSuerteHas.setBounds(10, 56, 366, 46);
 		contentPanel.add(lbltienesSuerteHas);
-		
-		JLabel lblCanjealoEnTu = new JLabel("Canjealo en tu pantalla de pago y recibiras un 25% de descuento en tu  reserva");
+
+		JLabel lblCanjealoEnTu = new JLabel(
+				"Canjealo en tu pantalla de pago y recibiras un 25% de descuento en tu  reserva");
 		lblCanjealoEnTu.setBounds(10, 203, 414, 14);
 		contentPanel.add(lblCanjealoEnTu);
-		
+
 		txtCodigoPromo = new JTextField();
 		txtCodigoPromo.setEditable(false);
 		txtCodigoPromo.setBounds(40, 95, 336, 97);
 		contentPanel.add(txtCodigoPromo);
 		txtCodigoPromo.setColumns(10);
-		
+
 	}
 
 	public JTextField getTxtCodigoPromo() {
@@ -80,6 +81,5 @@ public class VerCodigoPromo extends JDialog {
 	public void setLblBienvenido(JLabel lblBienvenido) {
 		this.lblBienvenido = lblBienvenido;
 	}
-	
-	
+
 }

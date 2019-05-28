@@ -88,29 +88,29 @@ public class Reserva extends JPanel {
 		tf_fecha_vuelta.setBounds(261, 122, 86, 20);
 		add(tf_fecha_vuelta);
 		tf_fecha_vuelta.setColumns(10);
-		
+
 		JLabel lblTipoPensin = new JLabel("Tipo Pensi\u00F3n:");
 		lblTipoPensin.setBounds(170, 150, 70, 14);
 		add(lblTipoPensin);
-		
+
 		JLabel lblTipoCama = new JLabel("Tipo Cama:");
 		lblTipoCama.setBounds(181, 175, 59, 14);
 		add(lblTipoCama);
-		
+
 		texpension = new JTextField();
 		texpension.setEditable(false);
 		texpension.setEnabled(false);
 		texpension.setBounds(261, 147, 86, 20);
 		add(texpension);
 		texpension.setColumns(10);
-		
+
 		textcama = new JTextField();
 		textcama.setEditable(false);
 		textcama.setEnabled(false);
 		textcama.setBounds(261, 172, 86, 20);
 		add(textcama);
 		textcama.setColumns(10);
-		
+
 		JLabel lblResumenDeLa = new JLabel("Resumen de la reserva realizada");
 		lblResumenDeLa.setBounds(130, 11, 180, 14);
 		add(lblResumenDeLa);
@@ -132,7 +132,6 @@ public class Reserva extends JPanel {
 	public void setTf_tipo_pagar(JTextField tf_tipo_pagar) {
 		this.tf_tipo_establecimiento = tf_tipo_pagar;
 	}
-
 
 	public JTextField getTf_precio_reserva() {
 		return tf_precio_reserva;
@@ -197,5 +196,5 @@ public class Reserva extends JPanel {
 	public void setTextcama(JTextField textcama) {
 		this.textcama = textcama;
 	}
-	
+
 }

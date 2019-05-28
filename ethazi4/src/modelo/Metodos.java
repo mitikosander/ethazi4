@@ -94,8 +94,6 @@ public class Metodos {
 		}
 
 	}
-	
-	
 
 	public DefaultTableModel cargarTablahoteles(String ubicacion) {
 
@@ -284,27 +282,27 @@ public class Metodos {
 		}
 
 	}
-/*
-	public  Cliente cogerdatosregistroUsuario() {
 
-		// Al darle al boton registrar, Guardas los datos de la pantalla y los guarda en
-		// un objeto usuario
-
-		Vista vista = new Vista();
-
-			Cliente A1 = new Cliente();
-
-			A1.setNombre(vista.getDatos_personas().getTxfnombre().getText());
-			A1.setDni(vista.getDatos_personas().getTxfdni().getText());
-			A1.setApellido(vista.getDatos_personas().getTxfapellido().getText());
-			A1.setFecha_nac(vista.getDatos_personas().getTxffecha().getText());
-				
-			return A1;
-	}
-*/
 	/*
-	  25d55ad283aa400af464c76d713c07ad (12345678) e919c49d5f0cd737285367810a3394d0
-	  (hotel) 81dc9bdb52d04dc20036dbd8313ed055 (1234) 
+	 * public Cliente cogerdatosregistroUsuario() {
+	 * 
+	 * // Al darle al boton registrar, Guardas los datos de la pantalla y los guarda
+	 * en // un objeto usuario
+	 * 
+	 * Vista vista = new Vista();
+	 * 
+	 * Cliente A1 = new Cliente();
+	 * 
+	 * A1.setNombre(vista.getDatos_personas().getTxfnombre().getText());
+	 * A1.setDni(vista.getDatos_personas().getTxfdni().getText());
+	 * A1.setApellido(vista.getDatos_personas().getTxfapellido().getText());
+	 * A1.setFecha_nac(vista.getDatos_personas().getTxffecha().getText());
+	 * 
+	 * return A1; }
+	 */
+	/*
+	 * 25d55ad283aa400af464c76d713c07ad (12345678) e919c49d5f0cd737285367810a3394d0
+	 * (hotel) 81dc9bdb52d04dc20036dbd8313ed055 (1234)
 	 */
 	public String encriptarPass(String pass) {
 
@@ -312,14 +310,15 @@ public class Metodos {
 		return pass;
 	}
 
-	
-	//metodo que decide si en esta ejecucion del programa genera o no un codigo promocional 
+	// metodo que decide si en esta ejecucion del programa genera o no un codigo
+	// promocional
 	public void asignarCodigoPromo() {
-		//primero hacemos un numero entre 1 y 2 para decidir si asignar o no el codigo de esta forma no siempre se dará un codigo
-		
-		int gen=(int) Math.floor(Math.random()*2+1);
-		
-		switch(gen) {
+		// primero hacemos un numero entre 1 y 2 para decidir si asignar o no el codigo
+		// de esta forma no siempre se dará un codigo
+
+		int gen = (int) Math.floor(Math.random() * 2 + 1);
+
+		switch (gen) {
 		case 1:
 			break;
 		case 2:
@@ -328,243 +327,230 @@ public class Metodos {
 			break;
 		}
 	}
-	
-	
-	//metodo que asigna un codigo promocional a un usuario aleatorio
+
+	// metodo que asigna un codigo promocional a un usuario aleatorio
 	private void asignacodigo() {
-		//generamos un numero entre 1 y el numero de usuarios que haya en la base
-		int n_users=contarUsuarios();
-		
-		int gen=(int) Math.floor(Math.random()*n_users);
-		
-		
-		//ahora seleccionamos de la base el nombre con el numero asignado
-		ArrayList<String> nombres=cargarNombresUsuario();
-		
-		String asignar=nombres.get(gen);
-		
-		//ahora insertamos el codigo promocional al usuario en la base de datos
-			insertarCodigoPromo(asignar);
-		
-		
+		// generamos un numero entre 1 y el numero de usuarios que haya en la base
+		int n_users = contarUsuarios();
+
+		int gen = (int) Math.floor(Math.random() * n_users);
+
+		// ahora seleccionamos de la base el nombre con el numero asignado
+		ArrayList<String> nombres = cargarNombresUsuario();
+
+		String asignar = nombres.get(gen);
+
+		// ahora insertamos el codigo promocional al usuario en la base de datos
+		insertarCodigoPromo(asignar);
+
 	}
-	
-	
-	//metodo que inserta el codigo promocional al usuario que se le pase por parametro
-	
+
+	// metodo que inserta el codigo promocional al usuario que se le pase por
+	// parametro
+
 	private void insertarCodigoPromo(String usuario) {
-		String codigoPromo=generarCodigo();
-		String sql="UPDATE usuarios SET codigopromo= ? WHERE Nombreusu LIKE '"+usuario+"'";
-		Modelo modelo=new Modelo();
+		String codigoPromo = generarCodigo();
+		String sql = "UPDATE usuarios SET codigopromo= ? WHERE Nombreusu LIKE '" + usuario + "'";
+		Modelo modelo = new Modelo();
 		try {
-			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
 			ps.setString(1, codigoPromo);
 			ps.executeUpdate();
-		}catch(SQLException e) {
-			System.err.println("Actualizacion erronea: " +e);
+		} catch (SQLException e) {
+			System.err.println("Actualizacion erronea: " + e);
 		}
 	}
-	
-	//metodo que carga el nombre de todos los usuarios de la base en un arraylist
-	private ArrayList<String> cargarNombresUsuario(){
-		ArrayList<String> nombres=new ArrayList<String>();
-		
-		Modelo modelo=new Modelo();
-		
-		String sql="SELECT DISTINCT Nombreusu FROM usuarios";
-		
+
+	// metodo que carga el nombre de todos los usuarios de la base en un arraylist
+	private ArrayList<String> cargarNombresUsuario() {
+		ArrayList<String> nombres = new ArrayList<String>();
+
+		Modelo modelo = new Modelo();
+
+		String sql = "SELECT DISTINCT Nombreusu FROM usuarios";
+
 		try {
-			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			
-			while(rs.next()) {
+			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
 				nombres.add(rs.getString(1));
 			}
-			
-		}catch(SQLException e) {
-			System.err.println("Conexion Erronea, motivo del error: "+e);
+
+		} catch (SQLException e) {
+			System.err.println("Conexion Erronea, motivo del error: " + e);
 		}
-		
+
 		return nombres;
 	}
-	
-	//metodo para contar el numero de usuarios en la base de datos
-	private int contarUsuarios(){
-		Modelo modelo=new Modelo();
-	
-		int n_users=0;
-		
-		String sql="SELECT COUNT(*) FROM usuarios";
-		
+
+	// metodo para contar el numero de usuarios en la base de datos
+	private int contarUsuarios() {
+		Modelo modelo = new Modelo();
+
+		int n_users = 0;
+
+		String sql = "SELECT COUNT(*) FROM usuarios";
+
 		try {
-			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			
-			while(rs.next()) {
-				n_users=rs.getInt(1);
+			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				n_users = rs.getInt(1);
 			}
-			
-		}catch(SQLException e) {
-			System.err.println("Error de conexion, el motivo es: "+e);
+
+		} catch (SQLException e) {
+			System.err.println("Error de conexion, el motivo es: " + e);
 		}
-		
+
 		return n_users;
-		
+
 	}
-	
-	
-	//metodo para generar un código promocional 
+
+	// metodo para generar un código promocional
 	private String generarCodigo() {
 		String codigo = null;
-		
-		
-		//definimos en un array el numero de posiciones que queremos, de esta forma el largo de nuestro codigo promocional
-		//será siempre el mismo
-		String[]posiciones= new String[10];
-		
-		int cont=0;
-		
-		
-		//generamos un numero que decidira si insertamos una letra o un numero
+
+		// definimos en un array el numero de posiciones que queremos, de esta forma el
+		// largo de nuestro codigo promocional
+		// será siempre el mismo
+		String[] posiciones = new String[10];
+
+		int cont = 0;
+
+		// generamos un numero que decidira si insertamos una letra o un numero
 		int gen;
-		
-		
-		while(cont<posiciones.length) {
-			gen=(int) Math.floor(Math.random()*2+1);
-			switch(gen){
+
+		while (cont < posiciones.length) {
+			gen = (int) Math.floor(Math.random() * 2 + 1);
+			switch (gen) {
 			case 1:
-				codigo=Character.toString(generarLetra());
+				codigo = Character.toString(generarLetra());
 				break;
 			case 2:
-				 codigo=Integer.toString(generarnumero());
+				codigo = Integer.toString(generarnumero());
 				break;
 			}
-			//guardamos el numero o letra generados
-			posiciones[cont]=codigo;
-			
-			//incrementamos el contador
+			// guardamos el numero o letra generados
+			posiciones[cont] = codigo;
+
+			// incrementamos el contador
 			cont++;
 		}
-		//guardamos en un solo String el conjunto de valores generados
-		for(int i=0;i<posiciones.length;i++) {
-			codigo+=posiciones[i];
+		// guardamos en un solo String el conjunto de valores generados
+		for (int i = 0; i < posiciones.length; i++) {
+			codigo += posiciones[i];
 		}
-		
-		
-		
+
 		return codigo;
 	}
-	
-	//metodo que genera un numero entre 1 y 9
+
+	// metodo que genera un numero entre 1 y 9
 	private int generarnumero() {
-		int num= (int) Math.floor(Math.random()*9+1);
+		int num = (int) Math.floor(Math.random() * 9 + 1);
 		return num;
 	}
-	//metodo que genera letras mayusculas de la A a la Z 
+
+	// metodo que genera letras mayusculas de la A a la Z
 	private char generarLetra() {
-		char letra= (char) Math.floor(Math.random()*(90-65+1)+65);
+		char letra = (char) Math.floor(Math.random() * (90 - 65 + 1) + 65);
 		return letra;
 	}
-	
-	
-	//metodo que borra el codigo promocional de la base de datos al ser usado 
+
+	// metodo que borra el codigo promocional de la base de datos al ser usado
 	public void borrarPromo(String usuario) {
-		Modelo modelo=new Modelo();
-		String sql="UPDATE usuarios SET codigopromo=null WHERE Nombreusu LIKE '"+usuario+"'";
-		
+		Modelo modelo = new Modelo();
+		String sql = "UPDATE usuarios SET codigopromo=null WHERE Nombreusu LIKE '" + usuario + "'";
+
 		try {
-			PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
 			ps.executeUpdate();
-		}catch(SQLException e) {
-			System.err.println("Actualizacion erronea, motivo: "+e);
+		} catch (SQLException e) {
+			System.err.println("Actualizacion erronea, motivo: " + e);
 		}
 	}
-	
-	
-	
 
+	// Metodo para generar un fichero de texto
+	public void modificarfichero(Double precio) {
+		Vista vista = new Vista();
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+		try {
+			fichero = new FileWriter("C:\\Users\\IN1DM3B_09\\Desktop\\prueba.txt");
+			pw = new PrintWriter(fichero);
 
-		// Metodo para generar un fichero de texto
-		public void modificarfichero(Double precio) {
-			Vista vista = new Vista();
-			FileWriter fichero = null;
-			PrintWriter pw = null;
-			try {
-				fichero = new FileWriter("C:\\Users\\IN1DM3B_09\\Desktop\\prueba.txt");
-				pw = new PrintWriter(fichero);
+			imprimirfecha();
+			pw.println(nombre);
 
-				imprimirfecha();
-				pw.println(nombre);
-				
-				if(vista.getInicio().getRdbtnHotel().isSelected()) {
-					pw.println("hotel");
-				}else {
-					if(vista.getInicio().getRdbtnCasaRural().isSelected()) {
-						pw.println("casa rural");
-					}else {
-						pw.println("apartamentos");
-					}
-				}
-				
-				if(vista.getInicio2().getRdbtnMediaPensin().isSelected()) {
-					pw.println("media pension");
-				}else {
-					pw.println("pension completa");
-				}
-				pw.println(precio);
-				
-				if(vista.getInicio2().getRdbtnDoble().isSelected()) {
-					pw.println("Cama Doble");
-				}else {
-					pw.println("cama individual");
-				}
-				
-				pw.println(fecha);
-				pw.println(fecha2);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					// Nuevamente aprovechamos el finally para
-					// asegurarnos que se cierra el fichero.
-					if (null != fichero)
-						fichero.close();
-				} catch (Exception e2) {
-					e2.printStackTrace();
+			if (vista.getInicio().getRdbtnHotel().isSelected()) {
+				pw.println("hotel");
+			} else {
+				if (vista.getInicio().getRdbtnCasaRural().isSelected()) {
+					pw.println("casa rural");
+				} else {
+					pw.println("apartamentos");
 				}
 			}
 
-		}
-		
-		
-		//Metodo que busca si el usuario registrado tiene un codigo promocional
-		public String consultarPromo(String usuario) {
-			String sql="SELECT codigopromo FROM usuarios WHERE Nombreusu LIKE '"+usuario+"'";
-			String codigopromo=null;
-			Modelo modelo=new Modelo();
-			
+			if (vista.getInicio2().getRdbtnMediaPensin().isSelected()) {
+				pw.println("media pension");
+			} else {
+				pw.println("pension completa");
+			}
+			pw.println(precio);
+
+			if (vista.getInicio2().getRdbtnDoble().isSelected()) {
+				pw.println("Cama Doble");
+			} else {
+				pw.println("cama individual");
+			}
+
+			pw.println(fecha);
+			pw.println(fecha2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			try {
-				PreparedStatement ps=modelo.getBasededatos().conectarBase().prepareStatement(sql);
-				ResultSet rs=ps.executeQuery();
-				
-				//comprobamos si el resultado de la consulta no es nulo, si es el caso,devolvemos el codigo del usuario
-				while(rs.next()){
-					codigopromo=rs.getString(1);
-				}
-				if(codigopromo !=null) {
+				// Nuevamente aprovechamos el finally para
+				// asegurarnos que se cierra el fichero.
+				if (null != fichero)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+	}
+
+	// Metodo que busca si el usuario registrado tiene un codigo promocional
+	public String consultarPromo(String usuario) {
+		String sql = "SELECT codigopromo FROM usuarios WHERE Nombreusu LIKE '" + usuario + "'";
+		String codigopromo = null;
+		Modelo modelo = new Modelo();
+
+		try {
+			PreparedStatement ps = modelo.getBasededatos().conectarBase().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			// comprobamos si el resultado de la consulta no es nulo, si es el
+			// caso,devolvemos el codigo del usuario
+			while (rs.next()) {
+				codigopromo = rs.getString(1);
+			}
+			if (codigopromo != null) {
 				return codigopromo;
-				}else {
-					return null;
-				}
-			}catch(SQLException e) {
-			System.err.println("Conexion erronea, motivo: "+e);	
-			return null;
+			} else {
+				return null;
 			}
-			
-			
+		} catch (SQLException e) {
+			System.err.println("Conexion erronea, motivo: " + e);
+			return null;
 		}
-		
-		//Metodo que inserta los datos de la reserva en la BBDD
+
+	}
+
+	// Metodo que inserta los datos de la reserva en la BBDD
 
 }
